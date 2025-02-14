@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         GroundCheck();
+        AnimationHandler();
         if (moveInput.x > 0 && !isFacingRight) Flip();
         if (moveInput.x < 0 && isFacingRight) Flip();
     }
@@ -65,6 +66,14 @@ public class PlayerController : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.transform.position, groundCheckRadius, groundLayer);
     }
 
+    void AnimationHandler()
+    {
+        if (moveInput.x != 0) playerAnim.SetBool("Run", true);
+        else playerAnim.SetBool("Run", false);
+        playerAnim.SetBool("Jump", !isGrounded);
+
+    }
+
     #region Input Methods
     //Métodos que permiten leer el input del New Input System
     //Crearemos un método por cada acción
@@ -73,14 +82,6 @@ public class PlayerController : MonoBehaviour
     {
         //Las acciones de tpo VALUE deben almacenarse = ReadValue
         moveInput = context.ReadValue<Vector2>();
-        if (context.started)
-        {
-            playerAnim.SetBool("Run", true);
-        }
-        if (context.canceled)
-        {
-            playerAnim.SetBool("Run", false);
-        }
     }
 
     public void Jump(InputAction.CallbackContext context)
@@ -89,14 +90,10 @@ public class PlayerController : MonoBehaviour
         {
             if (isGrounded)
             {   
-                playerAnim.SetBool("Jump", true);
                 playerRB.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
             }
         }
-        if (context.canceled)
-        {
-            playerAnim.SetBool("Jump", false);
-        }
+        
 
     }
     public void Attack1(InputAction.CallbackContext context)
