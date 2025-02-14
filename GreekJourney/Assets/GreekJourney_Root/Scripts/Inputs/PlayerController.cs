@@ -23,12 +23,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float groundCheckRadius;
     [SerializeField] LayerMask groundLayer;
 
+    private Animator playerAnim;
 
 
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
         playerInput = GetComponent<PlayerInput>();
+        playerAnim = GetComponent<Animator>();
         isFacingRight = true;
     }
 
@@ -71,6 +73,14 @@ public class PlayerController : MonoBehaviour
     {
         //Las acciones de tpo VALUE deben almacenarse = ReadValue
         moveInput = context.ReadValue<Vector2>();
+        if (context.started)
+        {
+            playerAnim.SetBool("Run", true);
+        }
+        if (context.canceled)
+        {
+            playerAnim.SetBool("Run", false);
+        }
     }
 
     public void Jump(InputAction.CallbackContext context)
@@ -78,24 +88,34 @@ public class PlayerController : MonoBehaviour
         if (context.started)
         {
             if (isGrounded)
-            {
+            {   
+                playerAnim.SetBool("Jump", true);
                 playerRB.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
             }
-
+        }
+        if (context.canceled)
+        {
+            playerAnim.SetBool("Jump", false);
         }
 
     }
-    public void OnAttack(InputAction.CallbackContext context)
+    public void Attack1(InputAction.CallbackContext context)
     {
         if (context.started)
         {
             isAttacking = true;
+            playerAnim.SetTrigger("Attack1");
         }
 
 
     }
+    public void Attack2(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            isAttacking = true;
+            playerAnim.SetTrigger("Attack2");
+        }
+    }
     #endregion
-
-
-
 }
