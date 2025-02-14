@@ -39,10 +39,10 @@ public class PlayerInputs : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Movement();
+        Run();
     }
 
-    void Movement()
+    void Run()
     {
         playerRB.velocity = new Vector3(moveInput.x * speed, playerRB.velocity.y, 0);
     }
@@ -65,7 +65,7 @@ public class PlayerInputs : MonoBehaviour
     //Métodos que permiten leer el input del New Input System
     //Crearemos un método por cada acción
 
-    public void HandleMovement(InputAction.CallbackContext context)
+    public void HandleRun(InputAction.CallbackContext context)
     {
         //Las acciones de tpo VALUE deben almacenarse = ReadValue
         moveInput = context.ReadValue<Vector2>();
