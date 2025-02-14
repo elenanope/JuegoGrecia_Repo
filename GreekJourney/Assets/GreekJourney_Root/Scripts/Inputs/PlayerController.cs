@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerInputs : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     //Referecias privadas generales
     [SerializeField] Rigidbody2D playerRB;
     [SerializeField] PlayerInput playerInput;
     Vector2 moveInput;
+    public bool isAttacking;
+
 
     [Header("Run Parameters")]
     public float speed;
@@ -65,13 +67,13 @@ public class PlayerInputs : MonoBehaviour
     //Métodos que permiten leer el input del New Input System
     //Crearemos un método por cada acción
 
-    public void HandleRun(InputAction.CallbackContext context)
+    public void Run(InputAction.CallbackContext context)
     {
         //Las acciones de tpo VALUE deben almacenarse = ReadValue
         moveInput = context.ReadValue<Vector2>();
     }
 
-    public void HandleJump(InputAction.CallbackContext context)
+    public void Jump(InputAction.CallbackContext context)
     {
         if (context.started)
         {
@@ -83,7 +85,15 @@ public class PlayerInputs : MonoBehaviour
         }
 
     }
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            isAttacking = true;
+        }
 
+
+    }
     #endregion
 
 
