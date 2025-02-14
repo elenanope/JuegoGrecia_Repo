@@ -98,20 +98,28 @@ public class PlayerController : MonoBehaviour
     }
     public void Attack1(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.performed)
         {
             isAttacking = true;
             playerAnim.SetTrigger("Attack1");
+        }
+        if (context.canceled)
+        {
+            isAttacking = false;
         }
 
 
     }
     public void Attack2(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.performed)
         {
             isAttacking = true;
             playerAnim.SetTrigger("Attack2");
+        }
+        if (context.canceled)
+        {
+            isAttacking = false;
         }
     }
     #endregion
