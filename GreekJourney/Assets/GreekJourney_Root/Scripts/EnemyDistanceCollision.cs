@@ -9,22 +9,27 @@ public class EnemyDistanceCollision : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            scriptEnemy.canFollow = true;
+        }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        scriptEnemy.canFollow = true;
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            scriptEnemy.canFollow = false;
+        }
     }
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        scriptEnemy.canFollow = false;
-    }
-
 }

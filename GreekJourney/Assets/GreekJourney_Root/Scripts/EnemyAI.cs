@@ -55,6 +55,13 @@ public class EnemyAI : MonoBehaviour
             //if(esta x cerca del player
 
         }
+
+
+        if(collision.gameObject.CompareTag("Weapon")) //Aun falta crear espada con collider y eso
+        {
+            //quitar vida?
+            enemyAnim.SetTrigger("Hurt");
+        }
     }
 
 
@@ -62,12 +69,15 @@ public class EnemyAI : MonoBehaviour
     void FollowingPlayer()
     {
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, followSpeed * Time.deltaTime);
+        enemyAnim.SetTrigger("Walk");
+        Debug.Log("Siguiendo al player");
     }
 
     void Attacking()
     {
         enemyAnim.SetTrigger("Attack");
-        //gameManager.Instance.totalLife - lifeToTake;
+        GameManager.Instance.totalLife -= lifeToTake;
+        Debug.Log("Jabali atacando!");
     }
 
 }
