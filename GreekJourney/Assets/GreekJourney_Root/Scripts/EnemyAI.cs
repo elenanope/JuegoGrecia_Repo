@@ -10,7 +10,7 @@ public class EnemyAI : MonoBehaviour
     // hará falta esto? [SerializeField] float limitX
 
     [Header("Enemy Game System Configuration")]
-    [SerializeField] int 
+    [SerializeField] int ghjgvhjg;
     [SerializeField] float aj;
 
 
