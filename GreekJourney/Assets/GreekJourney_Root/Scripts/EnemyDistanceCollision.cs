@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyDistanceCollision : MonoBehaviour
 {
+    EnemyAI scriptEnemy;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,4 +17,14 @@ public class EnemyDistanceCollision : MonoBehaviour
     {
         
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        scriptEnemy.canFollow = true;
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        scriptEnemy.canFollow = false;
+    }
+
 }
