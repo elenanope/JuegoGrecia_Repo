@@ -42,22 +42,18 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
-        if (canFollow && (distanceToPlayer <= startFollowing)) FollowingPlayer();
-        //else???
-        if(enemyLife<=0)
-        {
-            enemyLife = 0;
-            
-        }
+        if (canFollow) FollowingPlayer();
+        else enemyAnim.SetBool("Walk", false);
+        //antes: if (canFollow && (distanceToPlayer <= startFollowing)) FollowingPlayer();
+        
+
+        if(enemyLife<=0) enemyLife = 0;
         if(enemyLife == 0 && canDie)
         {
             enemyAnim.SetTrigger("Death");
             //enemyCol.enabled = false;
             Debug.Log("An enemy died!");
         }
-
-        //if (enemyLife cambia) enemyAnim.SetTrigger("Hurt");;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -67,7 +63,6 @@ public class EnemyAI : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Attacking();
-            //if(esta x cerca del player
         }
 
     }
@@ -88,7 +83,7 @@ public class EnemyAI : MonoBehaviour
     void FollowingPlayer()
     {
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, followSpeed * Time.deltaTime);
-        enemyAnim.SetTrigger("Walk");
+        enemyAnim.SetBool("Walk",true );
         Debug.Log("Siguiendo al player");
     }
 
