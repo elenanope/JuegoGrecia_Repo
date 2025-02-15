@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public int points;
     public int openHell;
     public int apple;
+    public float musicVolume;
     public enum GameState { gameOver, gameStarted, gamePaused, gameCompleted }
     public GameState currentGameState = GameState.gameStarted;
 
