@@ -118,14 +118,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 222135691389730027}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -198,12 +198,13 @@ MonoBehaviour:
   followSpeed: 0
   isDead: 0
   facingRight: 0
+  canDie: 1
   startFollowing: 0
   pointsToGive: 0
   lifeToTake: 0.1
   enemyLife: 1
   player: {fileID: 0}
-  enemyAnim: {fileID: 0}
+  enemyAnim: {fileID: 2369883408860300206}
   canFollow: 0
   enemyCol: {fileID: 0}
 --- !u!1 &1693867235144889713
@@ -216,6 +217,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5376473628115783918}
   - component: {fileID: 7134095659595298069}
+  - component: {fileID: 7666417721599507385}
   m_Layer: 0
   m_Name: WildPig
   m_TagString: Enemy
@@ -284,6 +286,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 8.009779, y: 2.5290456}
   m_EdgeRadius: 0
+--- !u!114 &7666417721599507385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1693867235144889713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f9699e3796751b4b9215a9584102229, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptEnemy: {fileID: 3197795526651501835}
 --- !u!1 &7665673383596041139
 GameObject:
   m_ObjectHideFlags: 0

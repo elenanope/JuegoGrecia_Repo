@@ -9,6 +9,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] float followSpeed;
     [SerializeField] bool isDead;
     [SerializeField] bool facingRight;
+    [SerializeField] bool canDie;
     [SerializeField] float startFollowing;
     // hará falta esto? [SerializeField] float limitX
 
@@ -35,6 +36,7 @@ public class EnemyAI : MonoBehaviour
     {
         enemyCol = GetComponent<BoxCollider2D>();
         canFollow = false;
+        canDie = true;
     }
 
     // Update is called once per frame
@@ -46,9 +48,12 @@ public class EnemyAI : MonoBehaviour
         if(enemyLife<=0)
         {
             enemyLife = 0;
+            
+        }
+        if(enemyLife == 0 && canDie)
+        {
             enemyAnim.SetTrigger("Death");
-            //enemyCol.SetActive(false);
-            enemyCol.enabled = false;
+            //enemyCol.enabled = false;
             Debug.Log("An enemy died!");
         }
 
@@ -63,11 +68,13 @@ public class EnemyAI : MonoBehaviour
         {
             Attacking();
             //if(esta x cerca del player
-
         }
 
+    }
 
-        if(collision.gameObject.CompareTag("Weapon")) //Aun falta crear espada con collider y eso
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Weapon")) //Aun falta crear espada con collider y eso
         {
             //quitar vida?
             enemyLife -= 0.2f;
