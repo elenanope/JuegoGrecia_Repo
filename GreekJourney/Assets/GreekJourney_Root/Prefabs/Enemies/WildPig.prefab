@@ -125,7 +125,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -136,7 +136,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &7621694813871224104
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -202,9 +202,10 @@ MonoBehaviour:
   pointsToGive: 0
   lifeToTake: 0.1
   enemyLife: 1
+  player: {fileID: 0}
   enemyAnim: {fileID: 0}
   canFollow: 0
-  enemyBody: {fileID: 0}
+  enemyCol: {fileID: 0}
 --- !u!1 &1693867235144889713
 GameObject:
   m_ObjectHideFlags: 0

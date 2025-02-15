@@ -17,7 +17,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] float lifeToTake = 0.1f;
     [SerializeField] float enemyLife = 0.6f;
 
-    GameObject player;
+    [SerializeField] GameObject player;
 
     [Header("Editor References")]
     [SerializeField] Animator enemyAnim;
@@ -26,7 +26,7 @@ public class EnemyAI : MonoBehaviour
     float distanceToPlayer;
 
     //Autoreferences
-    [SerializeField] GameObject enemyBody; //Cuerpo del enemigo
+    //[SerializeField] GameObject enemyBody; //Cuerpo del enemigo
     [SerializeField] BoxCollider2D enemyCol;
 
 
