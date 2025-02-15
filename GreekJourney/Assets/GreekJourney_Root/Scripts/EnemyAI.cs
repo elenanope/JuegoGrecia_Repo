@@ -15,7 +15,7 @@ public class EnemyAI : MonoBehaviour
     [Header("Enemy Game System Configuration")]
     [SerializeField] int pointsToGive = 0;
     [SerializeField] float lifeToTake = 0.1f;
-    [SerializeField] float enemyLife = 1f;
+    [SerializeField] float enemyLife = 0.6f;
 
     GameObject player;
 
@@ -27,11 +27,13 @@ public class EnemyAI : MonoBehaviour
 
     //Autoreferences
     [SerializeField] GameObject enemyBody; //Cuerpo del enemigo
+    [SerializeField] BoxCollider2D enemyCol;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        enemyCol = GetComponent<BoxCollider2D>();
         canFollow = false;
     }
 
@@ -41,6 +43,14 @@ public class EnemyAI : MonoBehaviour
         distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
         if (canFollow && (distanceToPlayer <= startFollowing)) FollowingPlayer();
         //else???
+        if(enemyLife<=0)
+        {
+            enemyLife = 0;
+            enemyAnim.SetTrigger("Death");
+            //enemyCol.SetActive(false);
+            enemyCol.enabled = false;
+            Debug.Log("An enemy died!");
+        }
 
         //if (enemyLife cambia) enemyAnim.SetTrigger("Hurt");;
     }
@@ -60,7 +70,9 @@ public class EnemyAI : MonoBehaviour
         if(collision.gameObject.CompareTag("Weapon")) //Aun falta crear espada con collider y eso
         {
             //quitar vida?
+            enemyLife -= 0.2f;
             enemyAnim.SetTrigger("Hurt");
+            Debug.Log("You hurt an enemy!");
         }
     }
 
