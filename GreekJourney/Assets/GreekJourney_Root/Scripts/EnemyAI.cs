@@ -43,6 +43,7 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         if (enemyLife <= 0) enemyLife = 0;
+        FlipTowardsTarget();
 
         if (canDie)
         {
@@ -83,7 +84,31 @@ public class EnemyAI : MonoBehaviour
     }
 
 
+    void FlipTowardsTarget()
+    {
+        Vector3 scale = transform.localScale;
 
+        if(facingRight)
+        {
+            if (player.transform.position.x > transform.position.x)
+                scale.x = Mathf.Abs(scale.x); // Mirar a la derecha
+            else
+                scale.x = -Mathf.Abs(scale.x); // Mirar a la izquierda
+
+            transform.localScale = scale;
+        }
+        else
+        {
+            if (player.transform.position.x > transform.position.x)
+                scale.x = -Mathf.Abs(scale.x); // Mirar a la derecha
+            else
+                scale.x = Mathf.Abs(scale.x); // Mirar a la izquierda
+
+            transform.localScale = scale;
+        }
+
+        
+    }
     void FollowingPlayer()
     {
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, followSpeed * Time.deltaTime);
