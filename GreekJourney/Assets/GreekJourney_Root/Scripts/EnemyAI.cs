@@ -42,18 +42,22 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (canFollow) FollowingPlayer();
-        else enemyAnim.SetBool("Walk", false);
-        //antes: if (canFollow && (distanceToPlayer <= startFollowing)) FollowingPlayer();
-        
+        if (enemyLife <= 0) enemyLife = 0;
 
-        if(enemyLife<=0) enemyLife = 0;
-        if(enemyLife == 0 && canDie)
+        if (canDie)
         {
-            enemyAnim.SetTrigger("Death");
-            //enemyCol.enabled = false;
-            Debug.Log("An enemy died!");
+            if (canFollow) FollowingPlayer();
+            else enemyAnim.SetBool("Walk", false);
+            //antes: if (canFollow && (distanceToPlayer <= startFollowing)) FollowingPlayer();
+
+            if (enemyLife == 0)
+            {
+                enemyAnim.SetTrigger("Death");
+                //enemyCol.enabled = false;
+                Debug.Log("An enemy died!");
+            }
         }
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
