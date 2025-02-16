@@ -131,7 +131,7 @@ public class EnemyAI : MonoBehaviour
     {
         Instantiate(pickUp, gameObject.transform.position, Quaternion.identity);
         pickUpRb.AddForce(Vector3.up * upForce, ForceMode2D.Impulse);
-        pickUpRb.AddForce(Vector3.right * lateralForce, ForceMode2D.Impulse);
+        //pickUpRb.AddForce(Vector3.right * lateralForce, ForceMode2D.Impulse);
     }
     void LiberarPickUp()
     {
