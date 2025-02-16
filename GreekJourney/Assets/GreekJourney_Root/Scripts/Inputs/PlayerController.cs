@@ -87,11 +87,13 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Apple"))
         {
             GameManager.Instance.apple += 1;
+            Debug.Log("pick up recogido");
             collision.gameObject.SetActive(false);
         }
         if (collision.gameObject.CompareTag("Dracma"))
         {
             GameManager.Instance.dracma += 1;
+            Debug.Log("pick up recogido");
             collision.gameObject.SetActive(false);
         }
             
