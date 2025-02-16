@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4570393104770254177}
   - component: {fileID: 7621694813871224104}
   - component: {fileID: 3197795526651501835}
+  - component: {fileID: 2793402938013009217}
   m_Layer: 0
   m_Name: WildPig_Body
   m_TagString: Enemy
@@ -207,6 +208,20 @@ MonoBehaviour:
   enemyAnim: {fileID: 2369883408860300206}
   canFollow: 0
   enemyCol: {fileID: 0}
+--- !u!114 &2793402938013009217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222135691389730027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c649d2598cc4824e99258e58fb9686c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 4570393104770254177}
+  changeType: 0
 --- !u!1 &1693867235144889713
 GameObject:
   m_ObjectHideFlags: 0
