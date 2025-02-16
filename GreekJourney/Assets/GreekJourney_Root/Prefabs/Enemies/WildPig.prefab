@@ -200,14 +200,16 @@ MonoBehaviour:
   isDead: 0
   facingRight: 0
   canDie: 1
-  startFollowing: 0
-  pointsToGive: 0
-  lifeToTake: 0.1
+  damageToPlayer: 0.1
+  damageTaken: 0.2
   enemyLife: 1
   player: {fileID: 0}
   enemyAnim: {fileID: 2369883408860300206}
   canFollow: 0
-  enemyCol: {fileID: 0}
+  pickUpRb: {fileID: 1507797754890798149, guid: 58698c55ee0345f4a9c2dbaab8ab67fe, type: 3}
+  pickUp: {fileID: 4501489135551222905, guid: 58698c55ee0345f4a9c2dbaab8ab67fe, type: 3}
+  upForce: 1
+  lateralForce: 1
 --- !u!114 &2793402938013009217
 MonoBehaviour:
   m_ObjectHideFlags: 0

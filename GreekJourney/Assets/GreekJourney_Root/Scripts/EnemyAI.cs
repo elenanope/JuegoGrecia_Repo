@@ -23,7 +23,13 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] Animator enemyAnim;
 
     public bool canFollow;
-    float distanceToPlayer;
+
+    [Header("PickUp References")]
+    [SerializeField] Rigidbody2D pickUpRb;
+    [SerializeField] GameObject pickUp;
+    [SerializeField] float upForce=1;
+    [SerializeField] float lateralForce=1;
+    [SerializeField] bool lastScene;
 
     //Autoreferences
     //[SerializeField] GameObject enemyBody; //Cuerpo del enemigo
@@ -33,6 +39,7 @@ public class EnemyAI : MonoBehaviour
     void Start()
     {
         canFollow = false;
+        lastScene = false;
         canDie = true;
     }
 
@@ -40,22 +47,23 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         if (enemyLife <= 0) enemyLife = 0;
-        FlipTowardsTarget();
 
         if (canDie)
         {
+            FlipTowardsTarget();
             if (canFollow) FollowingPlayer();
             else enemyAnim.SetBool("Walk", false);
             //antes: if (canFollow && (distanceToPlayer <= startFollowing)) FollowingPlayer();
-
             if (enemyLife == 0)
             {
                 enemyAnim.SetTrigger("Death");
                 //enemyCol.enabled = false;
                 Debug.Log("An enemy died!");
+                if(!lastScene) Invoke("SpawnObject", 1);
+                canDie = false;
+                
             }
         }
-        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -119,5 +127,16 @@ public class EnemyAI : MonoBehaviour
         GameManager.Instance.totalLife -= damageToPlayer;
         Debug.Log("Jabali atacando!");
     }
-
+    void SpawnObject()
+    {
+        Instantiate(pickUp, gameObject.transform.position, Quaternion.identity);
+        pickUpRb.AddForce(Vector3.up * upForce, ForceMode2D.Impulse);
+        pickUpRb.AddForce(Vector3.right * lateralForce, ForceMode2D.Impulse);
+    }
+    void LiberarPickUp()
+    {
+        Instantiate(pickUp);//ahora hay que referenciar este, no otro
+        pickUpRb.AddForce(Vector3.up * upForce, ForceMode2D.Impulse);
+        pickUpRb.AddForce(Vector3.right * lateralForce, ForceMode2D.Impulse);
+    }
 }

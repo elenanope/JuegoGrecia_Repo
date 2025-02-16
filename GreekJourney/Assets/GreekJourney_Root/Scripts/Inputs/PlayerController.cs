@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
-    {
+    {//Quitar si eso
         if (collision.gameObject.CompareTag("Apple"))
         {
             GameManager.Instance.apple += 1;
@@ -93,13 +93,24 @@ public class PlayerController : MonoBehaviour
             Debug.Log("pick up recogido");
             collision.gameObject.SetActive(false);
         }
-            
-        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy")) playerAnim.SetTrigger("Hurt");
+
+        if (collision.gameObject.CompareTag("Apple"))
+        {
+            GameManager.Instance.apple += 1;
+            Debug.Log("pick up recogido");
+            collision.gameObject.SetActive(false);
+        }
+        if (collision.gameObject.CompareTag("Dracma"))
+        {
+            GameManager.Instance.dracma += 1;
+            Debug.Log("pick up recogido");
+            collision.gameObject.SetActive(false);
+        }
     }
 
 

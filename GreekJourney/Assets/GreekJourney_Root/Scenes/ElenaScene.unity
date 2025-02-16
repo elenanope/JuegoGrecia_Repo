@@ -9511,7 +9511,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1582629346}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.029645443, y: 0.081939936, z: -10}
+  m_LocalPosition: {x: 0.03455925, y: 0.081939936, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10639,6 +10639,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: apple
       objectReference: {fileID: 0}
+    - target: {fileID: 4501489135551222905, guid: 58698c55ee0345f4a9c2dbaab8ab67fe, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5812315829257736731, guid: 58698c55ee0345f4a9c2dbaab8ab67fe, type: 3}
       propertyPath: m_RootOrder
       value: 17
@@ -10702,7 +10706,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3990833051771232370, guid: f01da5bf28049894185abc7d1764efbb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.5
+      value: 6.09
       objectReference: {fileID: 0}
     - target: {fileID: 3990833051771232370, guid: f01da5bf28049894185abc7d1764efbb, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10748,13 +10752,17 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 0.6290815
       objectReference: {fileID: 0}
+    - target: {fileID: 5280788105814338440, guid: f01da5bf28049894185abc7d1764efbb, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1461582826}
     - target: {fileID: 7870614180765210773, guid: f01da5bf28049894185abc7d1764efbb, type: 3}
       propertyPath: m_Name
       value: Crow
       objectReference: {fileID: 0}
     - target: {fileID: 7870614180765210773, guid: f01da5bf28049894185abc7d1764efbb, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
