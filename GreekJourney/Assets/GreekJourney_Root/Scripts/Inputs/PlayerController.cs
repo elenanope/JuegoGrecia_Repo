@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     [Header("Run Parameters")]
     public float speed;
     [SerializeField] bool isFacingRight;
+    [SerializeField] bool isAlive;
 
     [Header("Jump Parameters")]
     public float jumpForce;
@@ -32,6 +33,7 @@ public class PlayerController : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         playerAnim = GetComponent<Animator>();
         isFacingRight = true;
+        isAlive = true;
     }
 
     void Update()
@@ -40,6 +42,11 @@ public class PlayerController : MonoBehaviour
         AnimationHandler();
         if (moveInput.x > 0 && !isFacingRight) Flip();
         if (moveInput.x < 0 && isFacingRight) Flip();
+        if(GameManager.Instance.totalLife == 0 && isAlive)
+        {
+            playerAnim.SetTrigger("Death");
+            isAlive = false;
+        }
     }
 
     private void FixedUpdate()
@@ -72,6 +79,11 @@ public class PlayerController : MonoBehaviour
         else playerAnim.SetBool("Run", false);
         playerAnim.SetBool("Jump", !isGrounded);
 
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy")) playerAnim.SetTrigger("Hurt");
     }
 
     #region Input Methods

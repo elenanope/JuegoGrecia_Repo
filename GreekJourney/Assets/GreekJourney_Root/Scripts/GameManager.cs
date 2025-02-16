@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
         {
             totalLife = 0;
             currentGameState = GameState.gameOver;
+            Debug.Log("Has perdido!");
         }
     }
 
