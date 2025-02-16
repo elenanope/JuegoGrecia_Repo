@@ -60,7 +60,7 @@ public class EnemyAI : MonoBehaviour
     {
         //si despues de haber collisionado, la distancia con el colisionado es mayor a x,
         //que vuelva a su sitio y al idle, y que si entra en el true collider que ataque
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player")&&canDie)
         {
             Attacking();
         }
