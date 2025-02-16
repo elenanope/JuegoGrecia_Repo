@@ -84,8 +84,18 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Apple")) GameManager.Instance.apple += 1;
-        if (collision.gameObject.CompareTag("Dracma")) GameManager.Instance.dracma += 1;
+        if (collision.gameObject.CompareTag("Apple"))
+        {
+            GameManager.Instance.apple += 1;
+            collision.gameObject.SetActive(false);
+        }
+        if (collision.gameObject.CompareTag("Dracma"))
+        {
+            GameManager.Instance.dracma += 1;
+            collision.gameObject.SetActive(false);
+        }
+            
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -93,28 +103,6 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy")) playerAnim.SetTrigger("Hurt");
     }
 
-    // Detección de plataformas en movimiento
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("MovingPlatform"))
-        {
-            // Hacer que el jugador se mueva con la plataforma
-            Vector3 platformMovement = collision.gameObject.GetComponent<Rigidbody2D>().velocity;
-            playerRB.velocity = new Vector2(moveInput.x * speed + platformMovement.x, playerRB.velocity.y);
-        }
-        else if (collision.gameObject.CompareTag("Wall"))
-        {
-            playerRB.sharedMaterial = noFrictionMaterial; // Cambiar a material sin fricción
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Wall"))
-        {
-            playerRB.sharedMaterial = normalMaterial; // Restaurar el material con fricción normal
-        }
-    }
 
     #region Input Methods
     // Métodos que permiten leer el input del New Input System
