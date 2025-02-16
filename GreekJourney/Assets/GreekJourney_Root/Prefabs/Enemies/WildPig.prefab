@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4570393104770254177}
   - component: {fileID: 7621694813871224104}
   - component: {fileID: 3197795526651501835}
+  - component: {fileID: 2793402938013009217}
   m_Layer: 0
   m_Name: WildPig_Body
   m_TagString: Enemy
@@ -118,7 +119,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 222135691389730027}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -199,14 +200,30 @@ MonoBehaviour:
   isDead: 0
   facingRight: 0
   canDie: 1
-  startFollowing: 0
-  pointsToGive: 0
-  lifeToTake: 0.1
+  damageToPlayer: 0.1
+  damageTaken: 0.2
   enemyLife: 1
   player: {fileID: 0}
   enemyAnim: {fileID: 2369883408860300206}
   canFollow: 0
-  enemyCol: {fileID: 0}
+  pickUpRb: {fileID: 1507797754890798149, guid: 58698c55ee0345f4a9c2dbaab8ab67fe, type: 3}
+  pickUp: {fileID: 4501489135551222905, guid: 58698c55ee0345f4a9c2dbaab8ab67fe, type: 3}
+  upForce: 1
+  lateralForce: 1
+--- !u!114 &2793402938013009217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222135691389730027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c649d2598cc4824e99258e58fb9686c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 4570393104770254177}
+  changeType: 0
 --- !u!1 &1693867235144889713
 GameObject:
   m_ObjectHideFlags: 0

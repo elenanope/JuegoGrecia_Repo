@@ -5,16 +5,16 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    //Referecias privadas generales
+    // Referencias privadas generales
     [SerializeField] Rigidbody2D playerRB;
     [SerializeField] PlayerInput playerInput;
     Vector2 moveInput;
     public bool isAttacking;
 
-
     [Header("Run Parameters")]
     public float speed;
     [SerializeField] bool isFacingRight;
+    [SerializeField] bool isAlive;
 
     [Header("Jump Parameters")]
     public float jumpForce;
@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         playerAnim = GetComponent<Animator>();
         isFacingRight = true;
+        isAlive = true;
     }
 
     void Update()
@@ -40,6 +41,11 @@ public class PlayerController : MonoBehaviour
         AnimationHandler();
         if (moveInput.x > 0 && !isFacingRight) Flip();
         if (moveInput.x < 0 && isFacingRight) Flip();
+        if (GameManager.Instance.totalLife == 0 && isAlive)
+        {
+            playerAnim.SetTrigger("Death");
+            isAlive = false;
+        }
     }
 
     private void FixedUpdate()
@@ -62,7 +68,7 @@ public class PlayerController : MonoBehaviour
 
     void GroundCheck()
     {
-        //isGrounded es verdadero cuando el circulo detector toque la layer ground
+        // isGrounded es verdadero cuando el círculo detector toca la layer ground
         isGrounded = Physics2D.OverlapCircle(groundCheck.transform.position, groundCheckRadius, groundLayer);
     }
 
@@ -71,16 +77,48 @@ public class PlayerController : MonoBehaviour
         if (moveInput.x != 0) playerAnim.SetBool("Run", true);
         else playerAnim.SetBool("Run", false);
         playerAnim.SetBool("Jump", !isGrounded);
-
     }
 
-    #region Input Methods
-    //Métodos que permiten leer el input del New Input System
-    //Crearemos un método por cada acción
+    private void OnTriggerEnter2D(Collider2D collision)
+    {//Quitar si eso
+        if (collision.gameObject.CompareTag("Apple"))
+        {
+            GameManager.Instance.apple += 1;
+            Debug.Log("pick up recogido");
+            collision.gameObject.SetActive(false);
+        }
+        if (collision.gameObject.CompareTag("Dracma"))
+        {
+            GameManager.Instance.dracma += 1;
+            Debug.Log("pick up recogido");
+            collision.gameObject.SetActive(false);
+        }
+    }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy")) playerAnim.SetTrigger("Hurt");
+
+        if (collision.gameObject.CompareTag("Apple"))
+        {
+            GameManager.Instance.apple += 1;
+            Debug.Log("pick up recogido");
+            collision.gameObject.SetActive(false);
+        }
+        if (collision.gameObject.CompareTag("Dracma"))
+        {
+            GameManager.Instance.dracma += 1;
+            Debug.Log("pick up recogido");
+            collision.gameObject.SetActive(false);
+        }
+    }
+
+
+    #region Input Methods
+    // Métodos que permiten leer el input del New Input System
     public void Run(InputAction.CallbackContext context)
     {
-        //Las acciones de tpo VALUE deben almacenarse = ReadValue
+        // Las acciones de tipo VALUE deben almacenarse con ReadValue
         moveInput = context.ReadValue<Vector2>();
     }
 
@@ -89,13 +127,12 @@ public class PlayerController : MonoBehaviour
         if (context.started)
         {
             if (isGrounded)
-            {   
+            {
                 playerRB.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
             }
         }
-        
-
     }
+
     public void Attack1(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -107,9 +144,8 @@ public class PlayerController : MonoBehaviour
         {
             isAttacking = false;
         }
-
-
     }
+
     public void Attack2(InputAction.CallbackContext context)
     {
         if (context.performed)

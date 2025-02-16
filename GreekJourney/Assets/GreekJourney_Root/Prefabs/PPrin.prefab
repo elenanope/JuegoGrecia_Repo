@@ -47,7 +47,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6424310444005277293
 Transform:
   m_ObjectHideFlags: 0
@@ -123,6 +123,7 @@ GameObject:
   - component: {fileID: 8033535446242208680}
   - component: {fileID: 1513437193966936862}
   - component: {fileID: 1563202359130109320}
+  - component: {fileID: 687183515715236126}
   m_Layer: 0
   m_Name: PPrin
   m_TagString: Player
@@ -237,6 +238,7 @@ MonoBehaviour:
   isAttacking: 0
   speed: 7
   isFacingRight: 0
+  isAlive: 0
   jumpForce: 10
   isGrounded: 1
   groundCheck: {fileID: 132056930718095066}
@@ -260,7 +262,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 2
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: e3ca27cd1645a504ab2b6cbf36dd0bf8, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -404,3 +406,17 @@ MonoBehaviour:
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &687183515715236126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7365700844430022274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c649d2598cc4824e99258e58fb9686c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 8033535446242208680}
+  changeType: 0

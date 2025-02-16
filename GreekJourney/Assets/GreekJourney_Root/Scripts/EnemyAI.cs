@@ -10,12 +10,11 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] bool isDead;
     [SerializeField] bool facingRight;
     [SerializeField] bool canDie;
-    [SerializeField] float startFollowing;
     // hará falta esto? [SerializeField] float limitX
 
     [Header("Enemy Game System Configuration")]
-    [SerializeField] int pointsToGive = 0;
-    [SerializeField] float lifeToTake = 0.1f;
+    [SerializeField] float damageToPlayer = 0.1f;
+    [SerializeField] float damageTaken = 0.2f;
     [SerializeField] float enemyLife = 0.6f;
 
     [SerializeField] GameObject player;
@@ -24,35 +23,46 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] Animator enemyAnim;
 
     public bool canFollow;
-    float distanceToPlayer;
+
+    [Header("PickUp References")]
+    [SerializeField] Rigidbody2D pickUpRb;
+    [SerializeField] GameObject pickUp;
+    [SerializeField] float upForce=1;
+    [SerializeField] float lateralForce=1;
+    [SerializeField] bool lastScene;
 
     //Autoreferences
     //[SerializeField] GameObject enemyBody; //Cuerpo del enemigo
-    [SerializeField] BoxCollider2D enemyCol;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        enemyCol = GetComponent<BoxCollider2D>();
         canFollow = false;
+        lastScene = false;
         canDie = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (canFollow) FollowingPlayer();
-        else enemyAnim.SetBool("Walk", false);
-        //antes: if (canFollow && (distanceToPlayer <= startFollowing)) FollowingPlayer();
-        
+        if (enemyLife <= 0) enemyLife = 0;
 
-        if(enemyLife<=0) enemyLife = 0;
-        if(enemyLife == 0 && canDie)
+        if (canDie)
         {
-            enemyAnim.SetTrigger("Death");
-            //enemyCol.enabled = false;
-            Debug.Log("An enemy died!");
+            FlipTowardsTarget();
+            if (canFollow) FollowingPlayer();
+            else enemyAnim.SetBool("Walk", false);
+            //antes: if (canFollow && (distanceToPlayer <= startFollowing)) FollowingPlayer();
+            if (enemyLife == 0)
+            {
+                enemyAnim.SetTrigger("Death");
+                //enemyCol.enabled = false;
+                Debug.Log("An enemy died!");
+                if(!lastScene) Invoke("SpawnObject", 1);
+                canDie = false;
+                
+            }
         }
     }
 
@@ -60,7 +70,7 @@ public class EnemyAI : MonoBehaviour
     {
         //si despues de haber collisionado, la distancia con el colisionado es mayor a x,
         //que vuelva a su sitio y al idle, y que si entra en el true collider que ataque
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player")&&canDie)
         {
             Attacking();
         }
@@ -72,14 +82,38 @@ public class EnemyAI : MonoBehaviour
         if (collision.gameObject.CompareTag("Weapon")) //Aun falta crear espada con collider y eso
         {
             //quitar vida?
-            enemyLife -= 0.2f;
+            enemyLife -= damageTaken;
             enemyAnim.SetTrigger("Hurt");
             Debug.Log("You hurt an enemy!");
         }
     }
 
 
+    void FlipTowardsTarget()
+    {
+        Vector3 scale = transform.localScale;
 
+        if(facingRight)
+        {
+            if (player.transform.position.x > transform.position.x)
+                scale.x = Mathf.Abs(scale.x); // Mirar a la derecha
+            else
+                scale.x = -Mathf.Abs(scale.x); // Mirar a la izquierda
+
+            transform.localScale = scale;
+        }
+        else
+        {
+            if (player.transform.position.x > transform.position.x)
+                scale.x = -Mathf.Abs(scale.x); // Mirar a la derecha
+            else
+                scale.x = Mathf.Abs(scale.x); // Mirar a la izquierda
+
+            transform.localScale = scale;
+        }
+
+        
+    }
     void FollowingPlayer()
     {
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, followSpeed * Time.deltaTime);
@@ -90,8 +124,19 @@ public class EnemyAI : MonoBehaviour
     void Attacking()
     {
         enemyAnim.SetTrigger("Attack");
-        GameManager.Instance.totalLife -= lifeToTake;
+        GameManager.Instance.totalLife -= damageToPlayer;
         Debug.Log("Jabali atacando!");
     }
-
+    void SpawnObject()
+    {
+        Instantiate(pickUp, gameObject.transform.position, Quaternion.identity);
+        pickUpRb.AddForce(Vector3.up * upForce, ForceMode2D.Impulse);
+        //pickUpRb.AddForce(Vector3.right * lateralForce, ForceMode2D.Impulse);
+    }
+    void LiberarPickUp()
+    {
+        Instantiate(pickUp);//ahora hay que referenciar este, no otro
+        pickUpRb.AddForce(Vector3.up * upForce, ForceMode2D.Impulse);
+        pickUpRb.AddForce(Vector3.right * lateralForce, ForceMode2D.Impulse);
+    }
 }
