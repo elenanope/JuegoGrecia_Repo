@@ -122,8 +122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80d5922a2613b544faccf7164f4b23d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalSpeed: 0
-  followSpeed: 0
+  normalSpeed: 2
+  followSpeed: 2
   isDead: 0
   facingRight: 1
   canDie: 1
@@ -218,7 +218,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1 &2154502079637956618
 GameObject:
   m_ObjectHideFlags: 0
