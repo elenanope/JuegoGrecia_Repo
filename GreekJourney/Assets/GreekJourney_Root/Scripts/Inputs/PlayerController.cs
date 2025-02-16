@@ -82,6 +82,12 @@ public class PlayerController : MonoBehaviour
         playerAnim.SetBool("Jump", !isGrounded);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Apple")) GameManager.Instance.apple += 1;
+        if (collision.gameObject.CompareTag("Dracma")) GameManager.Instance.dracma += 1;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy")) playerAnim.SetTrigger("Hurt");

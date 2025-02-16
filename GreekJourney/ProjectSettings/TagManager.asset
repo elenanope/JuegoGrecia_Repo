@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - Weapon
   - Apple
+  - Dracma
   layers:
   - Default
   - TransparentFX
