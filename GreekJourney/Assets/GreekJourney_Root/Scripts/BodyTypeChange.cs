@@ -18,7 +18,7 @@ public class BodyTypeChange : MonoBehaviour
     {
         if(changeType && rb.bodyType == RigidbodyType2D.Dynamic)
         {
-            rb.bodyType = RigidbodyType2D.Kinematic;
+            rb.bodyType = RigidbodyType2D.Static;
         }
     }
 }

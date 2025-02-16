@@ -25,9 +25,6 @@ public class PlayerController : MonoBehaviour
 
     private Animator playerAnim;
 
-    // Nuevas variables para materiales de física
-    [SerializeField] PhysicsMaterial2D noFrictionMaterial; // Material sin fricción
-    [SerializeField] PhysicsMaterial2D normalMaterial; // Material con fricción normal
 
     void Start()
     {

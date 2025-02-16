@@ -10,12 +10,11 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] bool isDead;
     [SerializeField] bool facingRight;
     [SerializeField] bool canDie;
-    [SerializeField] float startFollowing;
     // hará falta esto? [SerializeField] float limitX
 
     [Header("Enemy Game System Configuration")]
-    [SerializeField] int pointsToGive = 0;
-    [SerializeField] float lifeToTake = 0.1f;
+    [SerializeField] float damageToPlayer = 0.1f;
+    [SerializeField] float damageTaken = 0.2f;
     [SerializeField] float enemyLife = 0.6f;
 
     [SerializeField] GameObject player;
@@ -28,13 +27,11 @@ public class EnemyAI : MonoBehaviour
 
     //Autoreferences
     //[SerializeField] GameObject enemyBody; //Cuerpo del enemigo
-    [SerializeField] BoxCollider2D enemyCol;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        enemyCol = GetComponent<BoxCollider2D>();
         canFollow = false;
         canDie = true;
     }
@@ -77,7 +74,7 @@ public class EnemyAI : MonoBehaviour
         if (collision.gameObject.CompareTag("Weapon")) //Aun falta crear espada con collider y eso
         {
             //quitar vida?
-            enemyLife -= 0.2f;
+            enemyLife -= damageTaken;
             enemyAnim.SetTrigger("Hurt");
             Debug.Log("You hurt an enemy!");
         }
@@ -119,7 +116,7 @@ public class EnemyAI : MonoBehaviour
     void Attacking()
     {
         enemyAnim.SetTrigger("Attack");
-        GameManager.Instance.totalLife -= lifeToTake;
+        GameManager.Instance.totalLife -= damageToPlayer;
         Debug.Log("Jabali atacando!");
     }
 

@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public float totalLife;
+    public float totalLife=1;
     public int points;
     public int openHell;//Que es esto
     public int apple;
