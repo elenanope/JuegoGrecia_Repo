@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
 
     private Animator playerAnim;
 
+    public Transform spawnPoint;
+    public float fallLimit = -10f;
 
     void Start()
     {
@@ -39,6 +41,12 @@ public class PlayerController : MonoBehaviour
     {
         GroundCheck();
         AnimationHandler();
+
+        if (transform.position.y < fallLimit)
+        {
+            Respawn();
+        }
+
         if (moveInput.x > 0 && !isFacingRight) Flip();
         if (moveInput.x < 0 && isFacingRight) Flip();
         if (GameManager.Instance.totalLife == 0 && isAlive)
@@ -79,18 +87,21 @@ public class PlayerController : MonoBehaviour
         playerAnim.SetBool("Jump", !isGrounded);
     }
 
+    void Respawn()
+    {
+        transform.position = spawnPoint.position;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {//Quitar si eso
         if (collision.gameObject.CompareTag("Apple"))
         {
             GameManager.Instance.apple += 1;
-            Debug.Log("pick up recogido");
             collision.gameObject.SetActive(false);
         }
         if (collision.gameObject.CompareTag("Dracma"))
         {
             GameManager.Instance.dracma += 1;
-            Debug.Log("pick up recogido");
             collision.gameObject.SetActive(false);
         }
     }
@@ -102,17 +113,14 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Apple"))
         {
             GameManager.Instance.apple += 1;
-            Debug.Log("pick up recogido");
             collision.gameObject.SetActive(false);
         }
         if (collision.gameObject.CompareTag("Dracma"))
         {
             GameManager.Instance.dracma += 1;
-            Debug.Log("pick up recogido");
             collision.gameObject.SetActive(false);
         }
     }
-
 
     #region Input Methods
     // Métodos que permiten leer el input del New Input System
