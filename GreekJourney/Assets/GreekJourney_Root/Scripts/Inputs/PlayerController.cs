@@ -96,32 +96,19 @@ public class PlayerController : MonoBehaviour
     {//Quitar si eso
         if (collision.gameObject.CompareTag("Apple"))
         {
-            GameManager.Instance.apple += 1;
             collision.gameObject.SetActive(false);
+            GameManager.Instance.apple += 1;
         }
         if (collision.gameObject.CompareTag("Dracma"))
         {
-            GameManager.Instance.dracma += 1;
             collision.gameObject.SetActive(false);
+            GameManager.Instance.dracma += 1;
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //if (collision.gameObject.CompareTag("Enemy")) playerAnim.SetTrigger("Hurt");
-        
-            
-
-        if (collision.gameObject.CompareTag("Apple"))
-        {
-            GameManager.Instance.apple += 1;
-            collision.gameObject.SetActive(false);
-        }
-        if (collision.gameObject.CompareTag("Dracma"))
-        {
-            GameManager.Instance.dracma += 1;
-            collision.gameObject.SetActive(false);
-        }
+        if (collision.gameObject.CompareTag("Enemy")) playerAnim.SetTrigger("Hurt");
     }
 
     #region Input Methods
