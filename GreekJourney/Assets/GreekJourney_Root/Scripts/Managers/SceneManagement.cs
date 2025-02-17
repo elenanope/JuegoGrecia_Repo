@@ -6,8 +6,12 @@ using UnityEngine.SceneManagement; //Librería que permite la carga/descarga de e
 public class SceneManagement : MonoBehaviour
 {
     public int specificSceneToLoad;
+    int sceneToLoad;
 
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Player")) SceneManager.LoadScene(sceneToLoad);
+    }
     public void SceneLoader(int sceneToLoad)
     {
         //Esta acción carga la escena del espacio igual al entero que indiquemos
