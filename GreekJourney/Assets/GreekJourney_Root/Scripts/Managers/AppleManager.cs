@@ -21,10 +21,12 @@ public class AppleManager : MonoBehaviour
             if (GameManager.Instance.apple != 0)
             {
                 grabbedApples += GameManager.Instance.apple;
+                //ponerRuidos
                 GameManager.Instance.apple = 0;
                 Debug.Log("Se han registrado manzanas");
-                textPanel.SetActive(true);
-                text.text = grabbedApples.ToString();
+                //textPanel.SetActive(true);
+                //text.text = grabbedApples.ToString();
+
             }
             else Debug.Log("No tienes nuevas manzanas");//luego poner aqui sonido de wrong
 

@@ -11,8 +11,6 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] bool canDie;
     [SerializeField] bool canAttack;
     [SerializeField] Rigidbody2D enemyrb;
-    [SerializeField] float attackCooldown = 1.5f;
-    private float lastAttackTime = 0f;
     // hará falta esto? [SerializeField] float limitX
 
     [Header("Enemy Game System Configuration")]
@@ -24,13 +22,12 @@ public class EnemyAI : MonoBehaviour
 
     [Header("Editor References")]
     [SerializeField] Animator enemyAnim;
-    [SerializeField] Animator playerAnim;
 
     public bool canFollow;
 
     [Header("PickUp References")]
     [SerializeField] GameObject pickUp;
-    [SerializeField] bool lastScene;
+    [SerializeField] bool soltarPickUp;
 
     //Autoreferences
     //[SerializeField] GameObject enemyBody; //Cuerpo del enemigo
@@ -41,7 +38,6 @@ public class EnemyAI : MonoBehaviour
     {
         enemyrb = GetComponent<Rigidbody2D>();
         canFollow = false;
-        lastScene = false;
         canDie = true;
     }
 
@@ -61,20 +57,7 @@ public class EnemyAI : MonoBehaviour
                 canDie = false;
                 Dying();
             }
-            if ((facingRight && player.transform.position.x - transform.position.x <= 1.5) ||
-        (!facingRight && transform.position.x - player.transform.position.x <= 1.5))
-            {
-                // Check if enough time has passed for the next attack
-                if (Time.time - lastAttackTime >= attackCooldown)
-                {
-                    Invoke("Attacking", 0f);  // Immediate attack call
-                    lastAttackTime = Time.time;  // Update the last attack time
-                }
-            }
-        }
-
-
-        
+        }  
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -119,7 +102,6 @@ public class EnemyAI : MonoBehaviour
     {
         enemyAnim.SetTrigger("Attack");
         GameManager.Instance.totalLife -= damageToPlayer;
-        playerAnim.SetTrigger("Hurt");
         Debug.Log("Jabali atacando!");
     }
     
@@ -128,7 +110,7 @@ public class EnemyAI : MonoBehaviour
         enemyAnim.SetTrigger("Death");
         //enemyCol.enabled = false;
         Debug.Log("An enemy died!");
-        if (!lastScene) pickUp.SetActive(true);
+        if (soltarPickUp) pickUp.SetActive(true);
         //if(!lastScene) Invoke("SpawnObject", 1);
     }
     void SpawnObject()
