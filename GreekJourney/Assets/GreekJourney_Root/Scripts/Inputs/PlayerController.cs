@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    // Referencias privadas generales
     [SerializeField] Rigidbody2D playerRB;
     [SerializeField] PlayerInput playerInput;
     Vector2 moveInput;
@@ -47,13 +47,15 @@ public class PlayerController : MonoBehaviour
             Respawn();
         }
 
-        if (moveInput.x > 0 && !isFacingRight) Flip();
-        if (moveInput.x < 0 && isFacingRight) Flip();
         if (GameManager.Instance.totalLife == 0 && isAlive)
         {
             playerAnim.SetTrigger("Death");
             isAlive = false;
+            StartCoroutine(LoadDieScene());
         }
+
+        if (moveInput.x > 0 && !isFacingRight) Flip();
+        if (moveInput.x < 0 && isFacingRight) Flip();
     }
 
     private void FixedUpdate()
@@ -76,7 +78,6 @@ public class PlayerController : MonoBehaviour
 
     void GroundCheck()
     {
-        // isGrounded es verdadero cuando el círculo detector toca la layer ground
         isGrounded = Physics2D.OverlapCircle(groundCheck.transform.position, groundCheckRadius, groundLayer);
     }
 
@@ -93,7 +94,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
-    {//Quitar si eso
+    {
         if (collision.gameObject.CompareTag("Apple"))
         {
             collision.gameObject.SetActive(false);
@@ -112,10 +113,8 @@ public class PlayerController : MonoBehaviour
     }
 
     #region Input Methods
-    // Métodos que permiten leer el input del New Input System
     public void Run(InputAction.CallbackContext context)
     {
-        // Las acciones de tipo VALUE deben almacenarse con ReadValue
         moveInput = context.ReadValue<Vector2>();
     }
 
@@ -156,4 +155,10 @@ public class PlayerController : MonoBehaviour
         }
     }
     #endregion
+
+    private IEnumerator LoadDieScene()
+    {
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene("DieScene");
+    }
 }

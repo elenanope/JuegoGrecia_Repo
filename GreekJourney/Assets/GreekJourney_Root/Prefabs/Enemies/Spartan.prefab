@@ -134,7 +134,7 @@ MonoBehaviour:
   enemyLife: 0.6
   player: {fileID: 0}
   enemyAnim: {fileID: 3978831847712180280}
-  canFollow: 0
+  canFollow: 1
   pickUp: {fileID: 8759090156343303918}
   soltarPickUp: 0
 --- !u!61 &422644972632636852
@@ -208,7 +208,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
