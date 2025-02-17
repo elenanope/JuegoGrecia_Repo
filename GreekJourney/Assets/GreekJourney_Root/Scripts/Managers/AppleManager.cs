@@ -44,7 +44,7 @@ public class AppleManager : MonoBehaviour
     void Update()
     {
         transform.position = Vector2.MoveTowards(transform.position, basketPoints[grabbedApples].position, speed * Time.deltaTime);
-        wall.transform.position = Vector2.MoveTowards(transform.position, wallPoints[grabbedApples].position, speed * Time.deltaTime);
+        wall.transform.position = Vector2.MoveTowards(wall.transform.position, wallPoints[grabbedApples].position, speed * Time.deltaTime);
     }
     void DisableObject()
     {
