@@ -5,12 +5,11 @@ using UnityEngine.SceneManagement; //Librería que permite la carga/descarga de e
 
 public class SceneManagement : MonoBehaviour
 {
-    public int specificSceneToLoad;
-    int sceneToLoad;
+    public int specificSceneToLoad;int sceneToLoad;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Player")) SceneManager.LoadScene(sceneToLoad);
+        if(collision.gameObject.CompareTag("Player")) SceneManager.LoadScene(specificSceneToLoad);
     }
     public void SceneLoader(int sceneToLoad)
     {
