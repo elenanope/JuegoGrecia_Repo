@@ -56,12 +56,8 @@ public class EnemyAI : MonoBehaviour
             //antes: if (canFollow && (distanceToPlayer <= startFollowing)) FollowingPlayer();
             if (enemyLife == 0)
             {
-                enemyAnim.SetTrigger("Death");
-                //enemyCol.enabled = false;
-                Debug.Log("An enemy died!");
-                if(!lastScene) Invoke("SpawnObject", 1);
                 canDie = false;
-                
+                Dying();
             }
         }
     }
@@ -74,9 +70,7 @@ public class EnemyAI : MonoBehaviour
         {
             Attacking();
         }
-
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Weapon")) //Aun falta crear espada con collider y eso
@@ -87,8 +81,6 @@ public class EnemyAI : MonoBehaviour
             Debug.Log("You hurt an enemy!");
         }
     }
-
-
     void FlipTowardsTarget()
     {
         Vector3 scale = transform.localScale;
@@ -120,12 +112,20 @@ public class EnemyAI : MonoBehaviour
         enemyAnim.SetBool("Walk",true );
         Debug.Log("Siguiendo al player");
     }
-
     void Attacking()
     {
         enemyAnim.SetTrigger("Attack");
         GameManager.Instance.totalLife -= damageToPlayer;
         Debug.Log("Jabali atacando!");
+    }
+    
+    void Dying()
+    {
+        enemyAnim.SetTrigger("Death");
+        //enemyCol.enabled = false;
+        Debug.Log("An enemy died!");
+        if (!lastScene) Instantiate(pickUp);
+        //if(!lastScene) Invoke("SpawnObject", 1);
     }
     void SpawnObject()
     {
