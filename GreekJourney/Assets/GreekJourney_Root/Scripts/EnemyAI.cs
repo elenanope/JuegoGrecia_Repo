@@ -7,9 +7,12 @@ public class EnemyAI : MonoBehaviour
     [Header("Enemy Move Parameters")]
     [SerializeField] float normalSpeed;
     [SerializeField] float followSpeed;
-    [SerializeField] bool isDead;
     [SerializeField] bool facingRight;
     [SerializeField] bool canDie;
+    [SerializeField] bool canAttack;
+    [SerializeField] Rigidbody2D enemyrb;
+    [SerializeField] float attackCooldown = 1.5f;
+    private float lastAttackTime = 0f;
     // hará falta esto? [SerializeField] float limitX
 
     [Header("Enemy Game System Configuration")]
@@ -21,14 +24,12 @@ public class EnemyAI : MonoBehaviour
 
     [Header("Editor References")]
     [SerializeField] Animator enemyAnim;
+    [SerializeField] Animator playerAnim;
 
     public bool canFollow;
 
     [Header("PickUp References")]
-    [SerializeField] Rigidbody2D pickUpRb;
     [SerializeField] GameObject pickUp;
-    [SerializeField] float upForce=1;
-    [SerializeField] float lateralForce=1;
     [SerializeField] bool lastScene;
 
     //Autoreferences
@@ -38,6 +39,7 @@ public class EnemyAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        enemyrb = GetComponent<Rigidbody2D>();
         canFollow = false;
         lastScene = false;
         canDie = true;
@@ -59,7 +61,20 @@ public class EnemyAI : MonoBehaviour
                 canDie = false;
                 Dying();
             }
+            if ((facingRight && player.transform.position.x - transform.position.x <= 1.5) ||
+        (!facingRight && transform.position.x - player.transform.position.x <= 1.5))
+            {
+                // Check if enough time has passed for the next attack
+                if (Time.time - lastAttackTime >= attackCooldown)
+                {
+                    Invoke("Attacking", 0f);  // Immediate attack call
+                    lastAttackTime = Time.time;  // Update the last attack time
+                }
+            }
         }
+
+
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -73,11 +88,13 @@ public class EnemyAI : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Weapon")) //Aun falta crear espada con collider y eso
+        if (collision.gameObject.CompareTag("Weapon"))
         {
             //quitar vida?
             enemyLife -= damageTaken;
             enemyAnim.SetTrigger("Hurt");
+            if(facingRight) enemyrb.AddForce(Vector3.left * 15, ForceMode2D.Impulse);
+            else enemyrb.AddForce(Vector3.right * 15, ForceMode2D.Impulse);
             Debug.Log("You hurt an enemy!");
         }
     }
@@ -85,26 +102,12 @@ public class EnemyAI : MonoBehaviour
     {
         Vector3 scale = transform.localScale;
 
-        if(facingRight)
+        if ((player.transform.position.x > transform.position.x) != facingRight)
         {
-            if (player.transform.position.x > transform.position.x)
-                scale.x = Mathf.Abs(scale.x); // Mirar a la derecha
-            else
-                scale.x = -Mathf.Abs(scale.x); // Mirar a la izquierda
-
+            facingRight = !facingRight;
+            scale.x *= -1; // Invierte la escala en X
             transform.localScale = scale;
         }
-        else
-        {
-            if (player.transform.position.x > transform.position.x)
-                scale.x = -Mathf.Abs(scale.x); // Mirar a la derecha
-            else
-                scale.x = Mathf.Abs(scale.x); // Mirar a la izquierda
-
-            transform.localScale = scale;
-        }
-
-        
     }
     void FollowingPlayer()
     {
@@ -116,6 +119,7 @@ public class EnemyAI : MonoBehaviour
     {
         enemyAnim.SetTrigger("Attack");
         GameManager.Instance.totalLife -= damageToPlayer;
+        playerAnim.SetTrigger("Hurt");
         Debug.Log("Jabali atacando!");
     }
     
@@ -124,19 +128,20 @@ public class EnemyAI : MonoBehaviour
         enemyAnim.SetTrigger("Death");
         //enemyCol.enabled = false;
         Debug.Log("An enemy died!");
-        if (!lastScene) Instantiate(pickUp);
+        if (!lastScene) pickUp.SetActive(true);
         //if(!lastScene) Invoke("SpawnObject", 1);
     }
     void SpawnObject()
     {
-        Instantiate(pickUp, gameObject.transform.position, Quaternion.identity);
-        pickUpRb.AddForce(Vector3.up * upForce, ForceMode2D.Impulse);
+        
+        //Instantiate(pickUp, gameObject.transform.position, Quaternion.identity);
+        //pickUpRb.AddForce(Vector3.up * upForce, ForceMode2D.Impulse);
         //pickUpRb.AddForce(Vector3.right * lateralForce, ForceMode2D.Impulse);
     }
     void LiberarPickUp()
     {
         Instantiate(pickUp);//ahora hay que referenciar este, no otro
-        pickUpRb.AddForce(Vector3.up * upForce, ForceMode2D.Impulse);
-        pickUpRb.AddForce(Vector3.right * lateralForce, ForceMode2D.Impulse);
+        //pickUpRb.AddForce(Vector3.up * upForce, ForceMode2D.Impulse);
+        //pickUpRb.AddForce(Vector3.right * lateralForce, ForceMode2D.Impulse);
     }
 }

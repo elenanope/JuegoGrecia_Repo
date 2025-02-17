@@ -108,7 +108,9 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy")) playerAnim.SetTrigger("Hurt");
+        //if (collision.gameObject.CompareTag("Enemy")) playerAnim.SetTrigger("Hurt");
+        
+            
 
         if (collision.gameObject.CompareTag("Apple"))
         {

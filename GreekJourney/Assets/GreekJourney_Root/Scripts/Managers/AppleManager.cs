@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class AppleManager : MonoBehaviour
 {
-
+    [SerializeField] TMP_Text text;
+    [SerializeField] GameObject textPanel;
     [SerializeField] int grabbedApples;
     [SerializeField] GameObject wall;
     [SerializeField] float speed;
@@ -21,7 +23,8 @@ public class AppleManager : MonoBehaviour
                 grabbedApples += GameManager.Instance.apple;
                 GameManager.Instance.apple = 0;
                 Debug.Log("Se han registrado manzanas");
-                
+                textPanel.SetActive(true);
+                text.text = grabbedApples.ToString();
             }
             else Debug.Log("No tienes nuevas manzanas");//luego poner aqui sonido de wrong
 
@@ -30,19 +33,23 @@ public class AppleManager : MonoBehaviour
         }
     }
 
-    
-
-    // Start is called before the first frame update
     void Start()
     {
         transform.position = basketPoints[0].position;
         wall.transform.position = wallPoints[0].position;
     }
 
-    // Update is called once per frame
     void Update()
     {
         transform.position = Vector2.MoveTowards(transform.position, basketPoints[grabbedApples].position, speed * Time.deltaTime);
         wall.transform.position = Vector2.MoveTowards(transform.position, wallPoints[grabbedApples].position, speed * Time.deltaTime);
     }
+    void DisableObject()
+    {
+        textPanel.SetActive(false);
+    }
+
+    
 }
+
+

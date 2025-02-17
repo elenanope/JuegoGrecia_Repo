@@ -200,16 +200,20 @@ MonoBehaviour:
   isDead: 0
   facingRight: 0
   canDie: 1
+  canAttack: 0
+  enemyrb: {fileID: 4570393104770254177}
+  attackCooldown: 1.5
   damageToPlayer: 0.1
   damageTaken: 0.2
   enemyLife: 1
   player: {fileID: 0}
   enemyAnim: {fileID: 2369883408860300206}
+  playerAnim: {fileID: 0}
   canFollow: 0
-  pickUpRb: {fileID: 1507797754890798149, guid: 58698c55ee0345f4a9c2dbaab8ab67fe, type: 3}
   pickUp: {fileID: 4501489135551222905, guid: 58698c55ee0345f4a9c2dbaab8ab67fe, type: 3}
   upForce: 1
   lateralForce: 1
+  lastScene: 0
 --- !u!114 &2793402938013009217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -290,7 +294,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.9829581, y: 0.76452255}
+  m_Offset: {x: -0.045716763, y: 0.76452255}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -301,7 +305,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8.009779, y: 2.5290456}
+  m_Size: {x: 8.9258795, y: 2.5290456}
   m_EdgeRadius: 0
 --- !u!114 &7666417721599507385
 MonoBehaviour:

@@ -142,7 +142,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0053540766, y: 0.62752134}
+  m_Offset: {x: 0.005354047, y: 0.6792844}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -153,7 +153,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0848439, y: 1.260342}
+  m_Size: {x: 1.0848439, y: 1.3638681}
   m_EdgeRadius: 0
 --- !u!50 &5720384383390184939
 Rigidbody2D:
@@ -210,19 +210,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normalSpeed: 3
   followSpeed: 3
-  isDead: 0
   facingRight: 0
   canDie: 1
+  canAttack: 0
+  enemyrb: {fileID: 0}
+  attackCooldown: 1.5
   damageToPlayer: 0.1
   damageTaken: 0.2
   enemyLife: 0.2
   player: {fileID: 0}
   enemyAnim: {fileID: 6203511412598750635}
+  playerAnim: {fileID: 0}
   canFollow: 0
-  pickUpRb: {fileID: 1507797754890798149, guid: 58698c55ee0345f4a9c2dbaab8ab67fe, type: 3}
   pickUp: {fileID: 4501489135551222905, guid: 58698c55ee0345f4a9c2dbaab8ab67fe, type: 3}
-  upForce: 1
-  lateralForce: 1
   lastScene: 0
 --- !u!1 &7870614180765210773
 GameObject:
@@ -290,7 +290,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.61255026, y: 1.0401939}
+  m_Offset: {x: 0.004292488, y: 1.0401939}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -301,7 +301,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.571702, y: 1.9814322}
+  m_Size: {x: 4.8053875, y: 1.9814322}
   m_EdgeRadius: 0
 --- !u!114 &4525695945310375204
 MonoBehaviour:
