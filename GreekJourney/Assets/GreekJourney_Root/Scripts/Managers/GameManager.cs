@@ -23,9 +23,15 @@ public class GameManager : MonoBehaviour
     public enum GameState { gameOver, gameStarted, gamePaused, gameCompleted }
     public GameState currentGameState = GameState.gameStarted;
 
+    public void PointsUp(int gain)
+    {
+        points += gain;
+    }
+
     private void Awake()
     {
         instance = this;
+        PointsUp(1);
     }
 
     private void Update()

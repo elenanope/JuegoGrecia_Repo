@@ -18,7 +18,7 @@ public class GameplayUIHandler : MonoBehaviour
 
     void PointsLifeUpdater()
     {
-        pointsText.text = "Points: " + GameManager.Instance.points.ToString();
+        pointsText.text = "X: " + GameManager.Instance.points.ToString();
         lifeBarFill.fillAmount = GameManager.Instance.totalLife;
     }
 }
