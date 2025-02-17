@@ -19,5 +19,8 @@ EditorBuildSettings:
     guid: 737a879c3e7a92944987a26163e6bdc7
   - enabled: 1
     path: Assets/GreekJourney_Root/Scenes/EndScene.unity
-    guid: c30ef24f03276d647afb2e997468e365
+    guid: 7c402a8a68253274b93f62fb9cf6fde6
+  - enabled: 1
+    path: Assets/GreekJourney_Root/Scenes/DieScene.unity
+    guid: 93a0c348ca654154a8276f90575e3121
   m_configObjects: {}
