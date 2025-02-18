@@ -54,7 +54,7 @@ public class AppleManager : MonoBehaviour
                     if ((1< grabbedPickUps)&&(grabbedPickUps < goalPickUps))
                     {
                         textPanel.SetActive(true); //Gracias por x dracmas
-                        text.text = ("Ohh, ") + grabbedPickUps.ToString() + (" drachmas, thanks. Bring me more!");
+                        text.text = ("Ohh, ") + grabbedPickUps.ToString() + (" drachmas now, thanks. Bring me more!");
                     }
                     else if (1== grabbedPickUps)
                     {
@@ -71,7 +71,7 @@ public class AppleManager : MonoBehaviour
             }
             if(calizCount)
             {
-                if (GameManager.Instance.caliz != 0)
+                if (GameManager.Instance.caliz!= 0)
                 {
                     grabbedPickUps += GameManager.Instance.caliz;
                     GameManager.Instance.caliz = 0;
@@ -80,8 +80,7 @@ public class AppleManager : MonoBehaviour
                     if (grabbedPickUps < goalPickUps)
                     {
                         textPanel.SetActive(true);
-                        text.text = ("This isn't enough! And certainly not worth my time, c'mon, GET THE CHALICES OR YOU'LL SEE!!");//this isn't enough! pero si te faltan, poner en script dialogo  ohh, empieza dialogo, 
-
+                        text.text = ("This isn't enough! And certainly not worth my time, c'mon, GET THE CHALICES OR YOU'LL SEE!!");
                     }
                     if (grabbedPickUps >= goalPickUps)
                     {
