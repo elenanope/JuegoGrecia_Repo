@@ -215,13 +215,11 @@ MonoBehaviour:
   canDie: 1
   canAttack: 0
   enemyrb: {fileID: 0}
-  attackCooldown: 1.5
   damageToPlayer: 0.1
   damageTaken: 0.2
   enemyLife: 0.2
   player: {fileID: 0}
   enemyAnim: {fileID: 6203511412598750635}
-  playerAnim: {fileID: 0}
   canFollow: 0
   pickUp: {fileID: 383933782544389863}
   soltarPickUp: 1
@@ -338,8 +336,20 @@ PrefabInstance:
       value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 5812315829257736731, guid: 58698c55ee0345f4a9c2dbaab8ab67fe, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5812315829257736731, guid: 58698c55ee0345f4a9c2dbaab8ab67fe, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5812315829257736731, guid: 58698c55ee0345f4a9c2dbaab8ab67fe, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5812315829257736731, guid: 58698c55ee0345f4a9c2dbaab8ab67fe, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.139
       objectReference: {fileID: 0}
     - target: {fileID: 5812315829257736731, guid: 58698c55ee0345f4a9c2dbaab8ab67fe, type: 3}
       propertyPath: m_LocalPosition.y
@@ -375,6 +385,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5812315829257736731, guid: 58698c55ee0345f4a9c2dbaab8ab67fe, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5812315829257736731, guid: 58698c55ee0345f4a9c2dbaab8ab67fe, type: 3}
+      propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

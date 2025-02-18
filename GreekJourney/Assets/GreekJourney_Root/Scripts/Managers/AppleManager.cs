@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Runtime.InteropServices;
 
 public class AppleManager : MonoBehaviour
 {
+
     [SerializeField] TMP_Text text;
     [SerializeField] GameObject textPanel;
     [SerializeField] int grabbedApples;
@@ -43,8 +45,12 @@ public class AppleManager : MonoBehaviour
 
     void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, basketPoints[grabbedApples].position, speed * Time.deltaTime);
-        wall.transform.position = Vector2.MoveTowards(wall.transform.position, wallPoints[grabbedApples].position, speed * Time.deltaTime);
+        if(grabbedApples!=0)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, basketPoints[grabbedApples - 1].position, speed * Time.deltaTime);
+            wall.transform.position = Vector2.MoveTowards(wall.transform.position, wallPoints[grabbedApples - 1].position, speed * Time.deltaTime);
+        }
+        
     }
     void DisableObject()
     {

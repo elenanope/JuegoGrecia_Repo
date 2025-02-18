@@ -56,8 +56,10 @@ public class EnemyAI : MonoBehaviour
             {
                 canDie = false;
                 Dying();
+                if (soltarPickUp) pickUp.SetActive(true);
             }
         }  
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -71,7 +73,7 @@ public class EnemyAI : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Weapon"))
+        if (collision.gameObject.CompareTag("Weapon")&&canDie)
         {
             //quitar vida?
             enemyLife -= damageTaken;
@@ -110,7 +112,7 @@ public class EnemyAI : MonoBehaviour
         enemyAnim.SetTrigger("Death");
         //enemyCol.enabled = false;
         Debug.Log("An enemy died!");
-        if (soltarPickUp) pickUp.SetActive(true);
+        
         //if(!lastScene) Invoke("SpawnObject", 1);
     }
     void SpawnObject()
@@ -122,7 +124,7 @@ public class EnemyAI : MonoBehaviour
     }
     void LiberarPickUp()
     {
-        Instantiate(pickUp);//ahora hay que referenciar este, no otro
+        //Instantiate(pickUp);//ahora hay que referenciar este, no otro
         //pickUpRb.AddForce(Vector3.up * upForce, ForceMode2D.Impulse);
         //pickUpRb.AddForce(Vector3.right * lateralForce, ForceMode2D.Impulse);
     }

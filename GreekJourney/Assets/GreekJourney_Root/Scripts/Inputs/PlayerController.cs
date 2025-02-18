@@ -28,11 +28,15 @@ public class PlayerController : MonoBehaviour
     public Transform spawnPoint;
     public float fallLimit = -10f;
 
+
+    [SerializeField]GameplayUIHandler handlerUI;
+
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
         playerInput = GetComponent<PlayerInput>();
         playerAnim = GetComponent<Animator>();
+        handlerUI.pickUps = 0;
         isFacingRight = true;
         isAlive = true;
     }
@@ -99,11 +103,13 @@ public class PlayerController : MonoBehaviour
         {
             collision.gameObject.SetActive(false);
             GameManager.Instance.apple += 1;
+            handlerUI.pickUps += 1;
         }
         if (collision.gameObject.CompareTag("Dracma"))
         {
             collision.gameObject.SetActive(false);
             GameManager.Instance.dracma += 1;
+            handlerUI.pickUps += 1;
         }
     }
 

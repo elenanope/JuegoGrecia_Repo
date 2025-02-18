@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class GameplayUIHandler : MonoBehaviour
 {
     [Header("UI References")]
+    public int pickUps;
+    [SerializeField] int pickUpsTotales;
     [SerializeField] TMP_Text pointsText;
     [SerializeField] Image lifeBarFill;
 
@@ -18,7 +20,7 @@ public class GameplayUIHandler : MonoBehaviour
 
     void PointsLifeUpdater()
     {
-        pointsText.text = "X: " + GameManager.Instance.points.ToString();
+        pointsText.text = pickUps+ " / " + pickUpsTotales;
         lifeBarFill.fillAmount = GameManager.Instance.totalLife;
     }
 }
