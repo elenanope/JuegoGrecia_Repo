@@ -242,6 +242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0d321269ebc4e947bb5758219e398fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 549770639}
   secondsToWait: 11
   nextScene: 1
 --- !u!1 &549770635

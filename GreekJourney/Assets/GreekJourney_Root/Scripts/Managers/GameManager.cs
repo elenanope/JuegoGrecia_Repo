@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
             currentGameState = GameState.gameOver;
             Debug.Log("Has perdido!");
         }
+        if (apple >= 9) apple = 9;
     }
 
 

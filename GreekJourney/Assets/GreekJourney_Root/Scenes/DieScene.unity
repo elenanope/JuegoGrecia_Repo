@@ -235,7 +235,6 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   specificSceneToLoad: 0
   hadesRedemption: 0
-  loadSceneNow: 0
 --- !u!4 &127374822
 Transform:
   m_ObjectHideFlags: 0
@@ -477,7 +476,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

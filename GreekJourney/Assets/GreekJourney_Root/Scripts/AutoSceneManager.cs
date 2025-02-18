@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class AutoSceneManager : MonoBehaviour
 {
+    [SerializeField] AudioSource audioSource;
     [SerializeField] int secondsToWait;
     [SerializeField] int nextScene;
     // Start is called before the first frame update
@@ -22,6 +23,7 @@ public class AutoSceneManager : MonoBehaviour
     IEnumerator EndScene()
     {
         yield return new WaitForSeconds(secondsToWait);
+        audioSource.Stop();
         SceneManager.LoadScene(nextScene);
     }
 }

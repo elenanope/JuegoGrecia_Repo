@@ -35,8 +35,6 @@ public class AppleManager : MonoBehaviour
                     //ponerRuidos
                     GameManager.Instance.apple = 0;
                     Debug.Log("Se han registrado manzanas");
-                    textPanel.SetActive(true); //Gracias por x dracmas
-                    text.text = GameManager.Instance.apple.ToString();
 
                 }
                 else Debug.Log("No tienes nuevas manzanas");//luego poner aqui sonido de wrong
