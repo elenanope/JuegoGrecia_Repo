@@ -184,7 +184,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1573952588, guid: b7f62f12ad3872e418e27cd1bc5fe386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d9fa2a361c14e204bb410ffb564aced1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -231,7 +231,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c4b6a0f258b4144dbee6a02f394082c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
   specificSceneToLoad: 0
+  hadesRedemption: 0
 --- !u!4 &127374822
 Transform:
   m_ObjectHideFlags: 0
@@ -282,7 +284,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -105.673256, y: 109.05413}
+  m_AnchoredPosition: {x: 37, y: 46}
   m_SizeDelta: {x: 909.4595, y: 326.2907}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &309840168
@@ -419,7 +421,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -729, y: -186}
+  m_AnchoredPosition: {x: -764, y: 71}
   m_SizeDelta: {x: 292.6712, y: 126.7394}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &407437758
@@ -690,7 +692,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -728.99994, y: -301.92}
+  m_AnchoredPosition: {x: -764, y: -108}
   m_SizeDelta: {x: 292.6712, y: 126.7394}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1068097141
