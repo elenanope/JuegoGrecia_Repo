@@ -222,7 +222,7 @@ MonoBehaviour:
   enemyAnim: {fileID: 6203511412598750635}
   canFollow: 0
   pickUp: {fileID: 383933782544389863}
-  soltarPickUp: 1
+  soltarPickUp: 0
 --- !u!1 &7870614180765210773
 GameObject:
   m_ObjectHideFlags: 0
