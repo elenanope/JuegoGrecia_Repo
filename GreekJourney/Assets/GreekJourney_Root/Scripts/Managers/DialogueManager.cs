@@ -16,8 +16,8 @@ public class DialogueManager : MonoBehaviour
     bool playerInRange;
     bool didDialogueStart;
     bool dialogueOver;
+    [SerializeField] bool hadesReaction;
     int lineIndex;
-    [SerializeField]int lastLine;
 
     [Header("Dialogo Arrays")]
     [SerializeField, TextArea(2, 4)] string[] dialogueLines;
@@ -27,11 +27,21 @@ public class DialogueManager : MonoBehaviour
     void Update()
     {
         //if (buttonPressed&&playerInRange) 
+        
+        
             
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player")) playerInRange = true; avisoDialogo.SetActive(true);
+        if (collision.gameObject.CompareTag("Player") && !hadesReaction)
+        {
+            playerInRange = true; avisoDialogo.SetActive(true);
+        }
+        if (collision.gameObject.CompareTag("Player") && hadesReaction && !dialogueOver)
+        {
+            playerInRange = true; avisoDialogo.SetActive(true);
+        }
+            
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -94,7 +104,7 @@ public class DialogueManager : MonoBehaviour
                 otherText.text = dialogueLines[lineIndex];
             }
         }
-        if (context.performed && playerInRange && dialogueOver)
+        if (context.performed && playerInRange && dialogueOver&&!hadesReaction)
         {
             if (!didDialogueStart)
             {
@@ -117,6 +127,7 @@ public class DialogueManager : MonoBehaviour
 
 
         }
+        
         //if(dialogueCanStart)IR viendo por que paso va
     }
         

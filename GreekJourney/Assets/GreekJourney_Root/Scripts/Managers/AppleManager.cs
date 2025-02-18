@@ -36,6 +36,9 @@ public class AppleManager : MonoBehaviour
                     //ponerRuidos
                     GameManager.Instance.apple = 0;
                     Debug.Log("Se han registrado manzanas");
+                    textPanel.SetActive(true); //Gracias por x dracmas
+                    text.text = GameManager.Instance.apple.ToString();
+
                 }
                 else Debug.Log("No tienes nuevas manzanas");//luego poner aqui sonido de wrong
             }
@@ -48,10 +51,15 @@ public class AppleManager : MonoBehaviour
                     GameManager.Instance.dracma = 0;
                     Debug.Log("Se han registrado dracmas");
                     //sonidoMoneda
-                    if (grabbedPickUps < goalPickUps)
+                    if ((1< grabbedPickUps)&&(grabbedPickUps < goalPickUps))
                     {
                         textPanel.SetActive(true); //Gracias por x dracmas
                         text.text = ("Ohh, ") + grabbedPickUps.ToString() + (" drachmas, thanks. Bring me more!");
+                    }
+                    else if (1== grabbedPickUps)
+                    {
+                        textPanel.SetActive(true); //Gracias por x dracmas
+                        text.text = ("Ohh, ") + grabbedPickUps.ToString() + (" drachma, thanks. Bring me more!");
                     }
                     if(grabbedPickUps>=goalPickUps)
                     {
@@ -63,23 +71,35 @@ public class AppleManager : MonoBehaviour
             }
             if(calizCount)
             {
-                grabbedPickUps += GameManager.Instance.caliz;
-                GameManager.Instance.caliz = 0;
-                Debug.Log("Se han registrado calices");
-                //sonidoMoneda
-                if(grabbedPickUps < goalPickUps)
+                if (GameManager.Instance.caliz != 0)
                 {
-                    textPanel.SetActive(true); //this isn't enough! pero si te faltan, poner en script dialogo  ohh, empieza dialogo, 
-                    //seguramente cambie todo esto a que lo haga el dialogo script
-                }
-                else ultimateDialogue = true; //referenciar en dialogo manager
+                    grabbedPickUps += GameManager.Instance.caliz;
+                    GameManager.Instance.caliz = 0;
+                    Debug.Log("Se han registrado calices");
+                    //sonidoMoneda
+                    if (grabbedPickUps < goalPickUps)
+                    {
+                        textPanel.SetActive(true);
+                        text.text = ("This isn't enough! And certainly not worth my time, c'mon, GET THE CHALICES OR YOU'LL SEE!!");//this isn't enough! pero si te faltan, poner en script dialogo  ohh, empieza dialogo, 
 
+                    }
+                    if (grabbedPickUps >= goalPickUps)
+                    {
+                        textPanel.SetActive(true);
+                        text.text = ("I knew you couldn't-\r\nWait... YOU HAVE THEM!?             F-forget everything cruel I said, will you? Here you go!");
+                        secondObject.SetActive(true);
+                    }
+                }
             }
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (appleCount)
+        {
+            textPanel.SetActive(false); //Gracias por x dracmas
+        }
         if (dracmaCount)
         {
             textPanel.SetActive(false); //Gracias por x dracmas
