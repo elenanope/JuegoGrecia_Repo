@@ -18,7 +18,7 @@ public class AppleManager : MonoBehaviour
     [SerializeField] GameObject textPanel;
     [SerializeField] int grabbedPickUps;
     [SerializeField] int goalPickUps;
-    [SerializeField] GameObject wall;
+    [SerializeField] GameObject secondObject;
     [SerializeField] float speed;
     [SerializeField] Transform[] basketPoints;
     [SerializeField] Transform[] wallPoints;
@@ -52,7 +52,15 @@ public class AppleManager : MonoBehaviour
                         textPanel.SetActive(true); //Gracias por x dracmas
                         text.text = ("Ohh, ") + grabbedPickUps.ToString() + (" drachmas, thanks. Bring me more!");
                     }
-                    else ultimateDialogue = true;
+                    if(grabbedPickUps<=goalPickUps)
+                    {
+                        textPanel.SetActive(true); //Gracias por x dracmas
+                        text.text = ("Great, I will show you the way...");
+                    }
+                    if (text.text == ("Great, I will show you the way..."))
+                    {
+
+                    }
                 }
                     
                     
@@ -88,7 +96,7 @@ public class AppleManager : MonoBehaviour
         if (appleCount)
         {
             transform.position = basketPoints[0].position;
-            wall.transform.position = wallPoints[0].position;
+            secondObject.transform.position = wallPoints[0].position;
         }
        
     }
@@ -98,7 +106,7 @@ public class AppleManager : MonoBehaviour
         if(grabbedPickUps!=0&&appleCount)
         {
             transform.position = Vector2.MoveTowards(transform.position, basketPoints[grabbedPickUps - 1].position, speed * Time.deltaTime);
-            wall.transform.position = Vector2.MoveTowards(wall.transform.position, wallPoints[grabbedPickUps - 1].position, speed * Time.deltaTime);
+            secondObject.transform.position = Vector2.MoveTowards(secondObject.transform.position, wallPoints[grabbedPickUps - 1].position, speed * Time.deltaTime);
         }
         
     }
