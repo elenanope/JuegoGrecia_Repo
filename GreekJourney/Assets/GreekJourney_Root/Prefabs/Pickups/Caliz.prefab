@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1192951075264183707}
   - component: {fileID: 1072810772235302005}
   - component: {fileID: 3257259475611754920}
-  - component: {fileID: 1493422428598184638}
   m_Layer: 0
   m_Name: Caliz
   m_TagString: Caliz
@@ -33,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1192951075264183707
 SpriteRenderer:
@@ -153,16 +152,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
---- !u!114 &1493422428598184638
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1325600151219570988}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5508178defb049489d4e9396999f7c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pointSum: 1

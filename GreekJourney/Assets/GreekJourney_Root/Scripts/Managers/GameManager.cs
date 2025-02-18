@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     }
 
     public float totalLife=1;
-    public int points;
+    public int caliz;
     public int openHell;//Que es esto
     public int apple;
     public int dracma;
@@ -23,15 +23,10 @@ public class GameManager : MonoBehaviour
     public enum GameState { gameOver, gameStarted, gamePaused, gameCompleted }
     public GameState currentGameState = GameState.gameStarted;
 
-    public void PointsUp(int gain)
-    {
-        points += gain;
-    }
 
     private void Awake()
     {
-        instance = this;
-        PointsUp(1);
+        instance = this;;
     }
 
     private void Update()

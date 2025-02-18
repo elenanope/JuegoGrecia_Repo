@@ -7,9 +7,17 @@ using System.Runtime.InteropServices;
 public class AppleManager : MonoBehaviour
 {
 
+    [Header("Opción de Pick Ups")]
+    [SerializeField] bool appleCount;
+    [SerializeField] bool dracmaCount;
+    [SerializeField] bool calizCount;
+
+
+    [SerializeField] bool ultimateDialogue;
     [SerializeField] TMP_Text text;
     [SerializeField] GameObject textPanel;
-    [SerializeField] int grabbedApples;
+    [SerializeField] int grabbedPickUps;
+    [SerializeField] int goalPickUps;
     [SerializeField] GameObject wall;
     [SerializeField] float speed;
     [SerializeField] Transform[] basketPoints;
@@ -19,36 +27,74 @@ public class AppleManager : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            
-            if (GameManager.Instance.apple != 0)
+            if(appleCount)
             {
-                grabbedApples += GameManager.Instance.apple;
-                //ponerRuidos
-                GameManager.Instance.apple = 0;
-                Debug.Log("Se han registrado manzanas");
-                //textPanel.SetActive(true);
-                //text.text = grabbedApples.ToString();
+                if (GameManager.Instance.apple != 0)
+                {
+                    grabbedPickUps += GameManager.Instance.apple;
+                    //ponerRuidos
+                    GameManager.Instance.apple = 0;
+                    Debug.Log("Se han registrado manzanas");
+                }
+                else Debug.Log("No tienes nuevas manzanas");//luego poner aqui sonido de wrong
+            }
+            
+            if(dracmaCount)
+            {
+                grabbedPickUps += GameManager.Instance.dracma;
+                GameManager.Instance.dracma = 0;
+                Debug.Log("Se han registrado dracmas");
+                //sonidoMoneda
+                if (grabbedPickUps < goalPickUps)
+                {
+                    textPanel.SetActive(true); //Gracias por x dracmas
+                    text.text = grabbedPickUps.ToString();
+                }
+                else ultimateDialogue = true;
+                    
+            }
+            if(calizCount)
+            {
+                grabbedPickUps += GameManager.Instance.caliz;
+                GameManager.Instance.caliz = 0;
+                Debug.Log("Se han registrado calices");
+                //sonidoMoneda
+                if(grabbedPickUps < goalPickUps)
+                {
+                    textPanel.SetActive(true); //this isn't enough! pero si te faltan, poner en script dialogo  ohh, empieza dialogo, 
+                    //seguramente cambie todo esto a que lo haga el dialogo script
+                }
+                else ultimateDialogue = true; //referenciar en dialogo manager
 
             }
-            else Debug.Log("No tienes nuevas manzanas");//luego poner aqui sonido de wrong
-
-
-            //transform.position = new Vector2(grabbedApples * -transform.position.x, transform.position.y);
         }
     }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (dracmaCount)
+        {
+            textPanel.SetActive(false); //Gracias por x dracmas
+        }
+        if (calizCount) textPanel.SetActive(false);
+    }
     void Start()
     {
-        transform.position = basketPoints[0].position;
-        wall.transform.position = wallPoints[0].position;
+
+        if (appleCount)
+        {
+            transform.position = basketPoints[0].position;
+            wall.transform.position = wallPoints[0].position;
+        }
+       
     }
 
     void Update()
     {
-        if(grabbedApples!=0)
+        if(grabbedPickUps!=0&&appleCount)
         {
-            transform.position = Vector2.MoveTowards(transform.position, basketPoints[grabbedApples - 1].position, speed * Time.deltaTime);
-            wall.transform.position = Vector2.MoveTowards(wall.transform.position, wallPoints[grabbedApples - 1].position, speed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, basketPoints[grabbedPickUps - 1].position, speed * Time.deltaTime);
+            wall.transform.position = Vector2.MoveTowards(wall.transform.position, wallPoints[grabbedPickUps - 1].position, speed * Time.deltaTime);
         }
         
     }

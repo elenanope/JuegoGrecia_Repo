@@ -111,6 +111,12 @@ public class PlayerController : MonoBehaviour
             GameManager.Instance.dracma += 1;
             handlerUI.pickUps += 1;
         }
+        if (collision.gameObject.CompareTag("Caliz"))
+        {
+            collision.gameObject.SetActive(false);
+            GameManager.Instance.caliz += 1;
+            handlerUI.pickUps += 1;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
