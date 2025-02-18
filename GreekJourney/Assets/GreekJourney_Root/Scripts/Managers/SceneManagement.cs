@@ -5,17 +5,18 @@ using UnityEngine.SceneManagement; //Librería que permite la carga/descarga de e
 
 public class SceneManagement : MonoBehaviour
 {
+    [SerializeField] AudioSource audioSource;
     public int specificSceneToLoad;int sceneToLoad;
     public bool hadesRedemption;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Player")) SceneManager.LoadScene(specificSceneToLoad);
+        if (collision.gameObject.CompareTag("Player")) audioSource.Stop(); SceneManager.LoadScene(specificSceneToLoad);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player")&&hadesRedemption) SceneManager.LoadScene(specificSceneToLoad);
+        if (collision.gameObject.CompareTag("Player") && hadesRedemption) audioSource.Stop(); SceneManager.LoadScene(specificSceneToLoad);
     }
     public void SceneLoader(int sceneToLoad)
     {

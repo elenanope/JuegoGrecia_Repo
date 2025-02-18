@@ -6683,7 +6683,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1655835671}
-  - component: {fileID: 1655835670}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -6691,25 +6690,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1655835670
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1655835669}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f932abc6c9607848aeaab2505384e10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  totalLife: 1
-  points: 0
-  openHell: 0
-  apple: 0
-  dracma: 0
-  musicVolume: 0
-  currentGameState: 1
 --- !u!4 &1655835671
 Transform:
   m_ObjectHideFlags: 0
@@ -8231,6 +8211,57 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 1147006505}
   parallaxEffect: 0.1
+--- !u!1 &2142836069
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2142836071}
+  - component: {fileID: 2142836070}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2142836070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2142836069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f932abc6c9607848aeaab2505384e10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalLife: 1
+  points: 0
+  openHell: 0
+  apple: 0
+  dracma: 0
+  musicVolume: 0
+  currentGameState: 1
+--- !u!4 &2142836071
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2142836069}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 81.95315, y: -0.9963725, z: 0.19248246}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &5744286233854525394 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4340293893632949544, guid: bf21acd302c3a4d4a99d1edad38ef6f1, type: 3}
