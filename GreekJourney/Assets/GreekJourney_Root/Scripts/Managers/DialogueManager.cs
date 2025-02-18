@@ -17,6 +17,7 @@ public class DialogueManager : MonoBehaviour
     bool didDialogueStart;
     bool dialogueOver;
     int lineIndex;
+    [SerializeField]int lastLine;
 
     [Header("Dialogo Arrays")]
     [SerializeField, TextArea(2, 4)] string[] dialogueLines;
@@ -50,7 +51,7 @@ public class DialogueManager : MonoBehaviour
     void NextDialogueLine()
     {
         lineIndex++;
-        if(lineIndex<dialogueLines.Length)
+        if(lineIndex<dialogueLines.Length-1)
         {
             StartCoroutine(ShowLine());
         }

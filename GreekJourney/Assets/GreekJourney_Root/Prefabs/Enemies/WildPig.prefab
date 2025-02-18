@@ -195,19 +195,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80d5922a2613b544faccf7164f4b23d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalSpeed: 0
-  followSpeed: 0
+  normalSpeed: 2
+  followSpeed: 2
   facingRight: 0
   canDie: 1
   canAttack: 0
   enemyrb: {fileID: 4570393104770254177}
-  attackCooldown: 1.5
-  damageToPlayer: 0.1
+  damageToPlayer: 0.05
   damageTaken: 0.2
   enemyLife: 1
   player: {fileID: 0}
   enemyAnim: {fileID: 2369883408860300206}
-  playerAnim: {fileID: 0}
   canFollow: 0
   pickUp: {fileID: 2569431036102953844}
   soltarPickUp: 1

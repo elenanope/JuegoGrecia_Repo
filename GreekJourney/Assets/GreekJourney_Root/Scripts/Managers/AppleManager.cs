@@ -41,16 +41,20 @@ public class AppleManager : MonoBehaviour
             
             if(dracmaCount)
             {
-                grabbedPickUps += GameManager.Instance.dracma;
-                GameManager.Instance.dracma = 0;
-                Debug.Log("Se han registrado dracmas");
-                //sonidoMoneda
-                if (grabbedPickUps < goalPickUps)
+                if (GameManager.Instance.dracma != 0)
                 {
-                    textPanel.SetActive(true); //Gracias por x dracmas
-                    text.text = grabbedPickUps.ToString();
+                    grabbedPickUps += GameManager.Instance.dracma;
+                    GameManager.Instance.dracma = 0;
+                    Debug.Log("Se han registrado dracmas");
+                    //sonidoMoneda
+                    if (grabbedPickUps < goalPickUps)
+                    {
+                        textPanel.SetActive(true); //Gracias por x dracmas
+                        text.text = ("Ohh, ") + grabbedPickUps.ToString() + (" drachmas, thanks. Bring me more!");
+                    }
+                    else ultimateDialogue = true;
                 }
-                else ultimateDialogue = true;
+                    
                     
             }
             if(calizCount)

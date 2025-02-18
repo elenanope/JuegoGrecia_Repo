@@ -215,7 +215,7 @@ MonoBehaviour:
   canDie: 1
   canAttack: 0
   enemyrb: {fileID: 0}
-  damageToPlayer: 0.1
+  damageToPlayer: 0.025
   damageTaken: 0.2
   enemyLife: 0.2
   player: {fileID: 0}
