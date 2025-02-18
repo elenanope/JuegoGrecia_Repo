@@ -2353,7 +2353,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickUps: 0
-  pickUpsTotales: 0
+  pickUpsTotales: 3
   pointsText: {fileID: 308161170}
   lifeBarFill: {fileID: 1560751897}
 --- !u!114 &638969367
