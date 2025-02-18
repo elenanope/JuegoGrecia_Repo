@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/GreekJourney_Root/Scenes/InicialCinematic.unity
+    guid: 8aa49c6d71b05a04c9dafdeaff726c89
+  - enabled: 1
     path: Assets/GreekJourney_Root/Scenes/MainMenu.unity
     guid: 69334bb66982ca047aeb704ca3815efd
   - enabled: 1

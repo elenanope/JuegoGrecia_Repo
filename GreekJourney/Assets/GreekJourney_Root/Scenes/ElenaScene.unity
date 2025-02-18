@@ -19207,8 +19207,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 675046276}
-  specificSceneToLoad: 2
+  specificSceneToLoad: 3
   hadesRedemption: 0
+  loadSceneNow: 0
 --- !u!61 &1990202562
 BoxCollider2D:
   m_ObjectHideFlags: 0
