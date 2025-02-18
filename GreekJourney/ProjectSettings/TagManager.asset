@@ -10,6 +10,7 @@ TagManager:
   - Apple
   - Dracma
   - Caliz
+  - Dialog
   layers:
   - Default
   - TransparentFX
