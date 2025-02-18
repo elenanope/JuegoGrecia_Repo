@@ -9,16 +9,7 @@ public class SceneManagement : MonoBehaviour
     [SerializeField] AudioSource audioSource;
     public int specificSceneToLoad;int sceneToLoad;
     public bool hadesRedemption;
-    [SerializeField] bool loadSceneNow;
 
-    private void Start()
-    {
-        loadSceneNow = false;
-    }
-    private void Update()
-    {
-        if(loadSceneNow) audioSource.Stop(); SceneManager.LoadScene(specificSceneToLoad);
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player")) audioSource.Stop(); SceneManager.LoadScene(specificSceneToLoad);

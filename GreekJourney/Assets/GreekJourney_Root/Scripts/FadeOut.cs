@@ -6,34 +6,60 @@ using UnityEngine.UI;
 
 public class FadeOut : MonoBehaviour
 {
+    [SerializeField]AppleManager appleManager;
     public float fadeDuration = 2f; // Time for fading out
-    private Image sr; // Image component to manipulate alpha
+    private Image image; // Image component to manipulate alpha
     //private Color originalColor;
     private float elapsedTime = 0f;
-    bool alarma;
+    bool dontRepeat;
 
-    // Called once when the script is first initialized
-    void Start()
+    public float fadeOutDuration = 3f;
+    public float fadeInDuration = 3f;
+
+    private void Start()
     {
-        StopCoroutine(FadingOut());
-        elapsedTime = 0;
-        alarma = false;
-        StartCoroutine(FadingOut());  // Start the fade-out coroutine
+        image = GetComponent<Image>();
     }
-
     private void Update()
     {
-        if(alarma)gameObject.SetActive(false);  // Deactivate the object after the fade is complete
+        if(appleManager.movingSth&&!dontRepeat) dontRepeat = true;StartCoroutine(nameof(StartGameFadeOut));
     }
+    
 
-    // Coroutine to handle fading out
+
     IEnumerator FadingOut()
     {
+        Color originalColor = image.color; // Store the original color
+
         while (elapsedTime < fadeDuration)
         {
-            elapsedTime += Time.deltaTime;
+            elapsedTime += Time.deltaTime; // Increase the elapsed time
+            float alpha = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration); // Calculate the alpha value
+            image.color = new Color(originalColor.r, originalColor.g, originalColor.b, alpha); // Update the color with new alpha
             yield return null;  // Wait for the next frame
         }
-        alarma = true;
+    }
+    
+    IEnumerator FadingIn()
+    {
+        Color originalColor = image.color; // Store the original color
+
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime; // Increase the elapsed time
+            float alpha = Mathf.Lerp(0f, 1f, elapsedTime / fadeDuration); // Calculate the alpha value
+            image.color = new Color(originalColor.r, originalColor.g, originalColor.b, alpha); // Update the color with new alpha
+            yield return null;  // Wait for the next frame
+        }
+    }
+    
+
+    private IEnumerator StartGameFadeOut()
+    {
+        yield return new WaitForSeconds(1);
+        FadingOut();
+        yield return new WaitForSeconds(3);
+        FadingIn();
+        yield return null;
     }
 }

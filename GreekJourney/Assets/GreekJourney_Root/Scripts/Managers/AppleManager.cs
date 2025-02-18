@@ -12,7 +12,8 @@ public class AppleManager : MonoBehaviour
     [SerializeField] bool dracmaCount;
     [SerializeField] bool calizCount;
 
-
+    [SerializeField] float secondsToRead = 3.5f;
+    public bool movingSth = false;
     [SerializeField] bool ultimateDialogue;
     [SerializeField] TMP_Text text;
     [SerializeField] GameObject textPanel;
@@ -52,18 +53,13 @@ public class AppleManager : MonoBehaviour
                         textPanel.SetActive(true); //Gracias por x dracmas
                         text.text = ("Ohh, ") + grabbedPickUps.ToString() + (" drachmas, thanks. Bring me more!");
                     }
-                    if(grabbedPickUps<=goalPickUps)
+                    if(grabbedPickUps>=goalPickUps)
                     {
                         textPanel.SetActive(true); //Gracias por x dracmas
                         text.text = ("Great, I will show you the way...");
+                        movingSth = true;
                     }
-                    if (text.text == ("Great, I will show you the way..."))
-                    {
-
-                    }
-                }
-                    
-                    
+                } 
             }
             if(calizCount)
             {
@@ -98,7 +94,8 @@ public class AppleManager : MonoBehaviour
             transform.position = basketPoints[0].position;
             secondObject.transform.position = wallPoints[0].position;
         }
-       
+        if(dracmaCount) secondObject.transform.position = wallPoints[0].position;
+
     }
 
     void Update()
@@ -108,6 +105,10 @@ public class AppleManager : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, basketPoints[grabbedPickUps - 1].position, speed * Time.deltaTime);
             secondObject.transform.position = Vector2.MoveTowards(secondObject.transform.position, wallPoints[grabbedPickUps - 1].position, speed * Time.deltaTime);
         }
+        if(movingSth)
+        {
+            secondObject.transform.position = Vector2.MoveTowards(secondObject.transform.position, wallPoints[1].position, speed * Time.deltaTime);
+        }
         
     }
     void DisableObject()
@@ -115,7 +116,10 @@ public class AppleManager : MonoBehaviour
         textPanel.SetActive(false);
     }
 
-    
+    void ResetAttack()
+    {
+        movingSth = true;
+    }
 }
 
 
