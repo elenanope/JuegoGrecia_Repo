@@ -12,7 +12,6 @@ public class AppleManager : MonoBehaviour
     [SerializeField] bool dracmaCount;
     [SerializeField] bool calizCount;
 
-    [SerializeField] float secondsToRead = 3.5f;
     public bool movingSth = false;
     [SerializeField] bool ultimateDialogue;
     [SerializeField] TMP_Text text;
