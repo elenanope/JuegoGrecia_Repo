@@ -35,10 +35,6 @@ public class AudioManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-    private void Update()
-    {
-        musicSource.volume = GameManager.Instance.musicVolume;
-    }
 
     public void PlayMusic(int musicIndex)
     {

@@ -21,12 +21,14 @@ public class SceneManagement : MonoBehaviour
     }
     public void SceneLoader(int sceneToLoad)
     {
+        audioSource.Stop();
         //Esta acción carga la escena del espacio igual al entero que indiquemos
         SceneManager.LoadScene(sceneToLoad);
     }
 
     public void SceneLoaderOnPlay()
     {
+        audioSource.Stop();
         SceneManager.LoadScene(specificSceneToLoad);
     }
 

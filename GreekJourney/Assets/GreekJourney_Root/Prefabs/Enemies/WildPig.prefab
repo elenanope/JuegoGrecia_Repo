@@ -195,6 +195,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80d5922a2613b544faccf7164f4b23d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wildPig: 1
+  crow: 0
+  spartan: 0
+  demon: 0
   normalSpeed: 2
   followSpeed: 2
   facingRight: 0

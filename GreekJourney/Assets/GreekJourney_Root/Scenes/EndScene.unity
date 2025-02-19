@@ -231,7 +231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c4b6a0f258b4144dbee6a02f394082c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 767585399}
   specificSceneToLoad: 0
   hadesRedemption: 0
 --- !u!4 &127374822

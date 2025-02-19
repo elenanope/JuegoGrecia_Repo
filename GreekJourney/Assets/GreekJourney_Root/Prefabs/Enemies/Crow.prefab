@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8392231613452170419}
   - component: {fileID: 5280788105814338440}
   m_Layer: 0
-  m_Name: Crow
+  m_Name: Crow_Body
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -209,6 +209,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80d5922a2613b544faccf7164f4b23d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wildPig: 0
+  crow: 1
+  spartan: 0
+  demon: 0
   normalSpeed: 3
   followSpeed: 3
   facingRight: 0

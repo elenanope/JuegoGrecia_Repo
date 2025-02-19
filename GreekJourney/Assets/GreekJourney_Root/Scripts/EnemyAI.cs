@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
+
+    [Header("Enemy Type")]
+    [SerializeField] bool wildPig;
+    [SerializeField] bool crow;
+    [SerializeField] bool spartan;
+    [SerializeField] bool demon;
+
     [Header("Enemy Move Parameters")]
     [SerializeField] float normalSpeed;
     [SerializeField] float followSpeed;
     [SerializeField] bool facingRight;
     [SerializeField] bool canDie;
-    [SerializeField] bool canAttack;
+    
     [SerializeField] Rigidbody2D enemyrb;
     // hará falta esto? [SerializeField] float limitX
 
@@ -81,6 +88,10 @@ public class EnemyAI : MonoBehaviour
             if(facingRight) enemyrb.AddForce(Vector3.left * 15, ForceMode2D.Impulse);
             else enemyrb.AddForce(Vector3.right * 15, ForceMode2D.Impulse);
             Debug.Log("You hurt an enemy!");
+            if (wildPig) AudioManager.Instance.PlaySFX(12);
+            if (crow) AudioManager.Instance.PlaySFX(11);
+            if (demon) AudioManager.Instance.PlaySFX(14);
+            if (spartan) AudioManager.Instance.PlaySFX(13);
         }
     }
     void FlipTowardsTarget()
@@ -102,9 +113,9 @@ public class EnemyAI : MonoBehaviour
     }
     void Attacking()
     {
-        enemyAnim.SetTrigger("Attack");
-        GameManager.Instance.totalLife -= damageToPlayer;
-        Debug.Log("Jabali atacando!");
+            enemyAnim.SetTrigger("Attack");
+            GameManager.Instance.totalLife -= damageToPlayer;
+            Debug.Log("Jabali atacando!");
     }
     
     void Dying()
@@ -114,18 +125,5 @@ public class EnemyAI : MonoBehaviour
         Debug.Log("An enemy died!");
         
         //if(!lastScene) Invoke("SpawnObject", 1);
-    }
-    void SpawnObject()
-    {
-        
-        //Instantiate(pickUp, gameObject.transform.position, Quaternion.identity);
-        //pickUpRb.AddForce(Vector3.up * upForce, ForceMode2D.Impulse);
-        //pickUpRb.AddForce(Vector3.right * lateralForce, ForceMode2D.Impulse);
-    }
-    void LiberarPickUp()
-    {
-        //Instantiate(pickUp);//ahora hay que referenciar este, no otro
-        //pickUpRb.AddForce(Vector3.up * upForce, ForceMode2D.Impulse);
-        //pickUpRb.AddForce(Vector3.right * lateralForce, ForceMode2D.Impulse);
     }
 }

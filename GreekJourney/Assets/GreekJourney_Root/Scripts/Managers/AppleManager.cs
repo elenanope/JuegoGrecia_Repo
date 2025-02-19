@@ -34,8 +34,13 @@ public class AppleManager : MonoBehaviour
                     grabbedPickUps += GameManager.Instance.apple;
                     //ponerRuidos
                     GameManager.Instance.apple = 0;
+                    AudioManager.Instance.PlaySFX(9);
                     Debug.Log("Se han registrado manzanas");
 
+                }
+                else if (grabbedPickUps >= goalPickUps)
+                {
+                    AudioManager.Instance.PlaySFX(1);
                 }
                 else Debug.Log("No tienes nuevas manzanas");//luego poner aqui sonido de wrong
             }
@@ -63,6 +68,7 @@ public class AppleManager : MonoBehaviour
                         textPanel.SetActive(true); //Gracias por x dracmas
                         text.text = ("Great, I will show you the way...");
                         movingSth = true;
+                        AudioManager.Instance.PlaySFX(1);
                     }
                 } 
             }
@@ -84,6 +90,7 @@ public class AppleManager : MonoBehaviour
                         textPanel.SetActive(true);
                         text.text = ("I knew you couldn't-\r\nWait... YOU HAVE THEM!?             F-forget everything cruel I said, will you? Here you go!");
                         secondObject.SetActive(true);
+                        AudioManager.Instance.PlaySFX(1);
                     }
                 }
             }

@@ -16,10 +16,9 @@ public class GameManager : MonoBehaviour
 
     public float totalLife=1;
     public int caliz;
-    public int openHell;//Que es esto
     public int apple;
     public int dracma;
-    public float musicVolume;
+    public float musicVolume=1;
     public enum GameState { gameOver, gameStarted, gamePaused, gameCompleted }
     public GameState currentGameState = GameState.gameStarted;
 
@@ -39,6 +38,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("Has perdido!");
         }
         if (apple >= 9) apple = 9;
+        if(dracma >= 10) dracma = 10;
     }
 
 
