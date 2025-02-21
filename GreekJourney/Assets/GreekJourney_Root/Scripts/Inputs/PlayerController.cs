@@ -125,7 +125,12 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy")) playerAnim.SetTrigger("Hurt"); AudioManager.Instance.PlaySFX(3);
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            playerAnim.SetTrigger("Hurt"); 
+            AudioManager.Instance.PlaySFX(3);
+        }
+            
     }
 
     #region Input Methods
