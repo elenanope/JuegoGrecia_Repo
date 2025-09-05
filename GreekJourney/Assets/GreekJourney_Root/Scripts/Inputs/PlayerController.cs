@@ -80,6 +80,12 @@ public class PlayerController : MonoBehaviour
         isFacingRight = !isFacingRight;
     }
 
+    public void TakeDamage(float lifeToTake)
+    {
+        GameManager.Instance.totalLife -= lifeToTake;
+        playerAnim.SetTrigger("Hurt");
+        AudioManager.Instance.PlaySFX(3);
+    }
     void GroundCheck()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.transform.position, groundCheckRadius, groundLayer);
@@ -121,16 +127,6 @@ public class PlayerController : MonoBehaviour
             handlerUI.pickUps += 1;
             AudioManager.Instance.PlaySFX(8);
         }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            playerAnim.SetTrigger("Hurt"); 
-            AudioManager.Instance.PlaySFX(3);
-        }
-            
     }
 
     #region Input Methods

@@ -131,11 +131,13 @@ MonoBehaviour:
   followSpeed: 3
   facingRight: 1
   canDie: 1
-  canAttack: 0
   enemyrb: {fileID: 0}
   damageToPlayer: 0.025
   damageTaken: 0.3
   enemyLife: 0.6
+  attackDistance: 1
+  attackCooldown: 0
+  attacking: 0
   player: {fileID: 0}
   enemyAnim: {fileID: 704060276354693110}
   canFollow: 0
@@ -236,7 +238,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 167943621871428160}
-  - component: {fileID: 7344774773084017890}
   - component: {fileID: 1942803671602577238}
   m_Layer: 0
   m_Name: Gargoyle
@@ -261,19 +262,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7344774773084017890
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8384708222870970428}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f9699e3796751b4b9215a9584102229, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scriptEnemy: {fileID: 1311320324769593645}
 --- !u!61 &1942803671602577238
 BoxCollider2D:
   m_ObjectHideFlags: 0

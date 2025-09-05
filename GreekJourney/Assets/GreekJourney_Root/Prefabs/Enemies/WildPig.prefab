@@ -207,6 +207,9 @@ MonoBehaviour:
   damageToPlayer: 0.05
   damageTaken: 0.2
   enemyLife: 1
+  attackDistance: 1.5
+  attackCooldown: 0
+  attacking: 0
   player: {fileID: 0}
   enemyAnim: {fileID: 2369883408860300206}
   canFollow: 0
@@ -236,7 +239,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5376473628115783918}
   - component: {fileID: 7134095659595298069}
-  - component: {fileID: 7666417721599507385}
   m_Layer: 0
   m_Name: WildPig
   m_TagString: Enemy
@@ -305,19 +307,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 8.9258795, y: 2.5290456}
   m_EdgeRadius: 0
---- !u!114 &7666417721599507385
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1693867235144889713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f9699e3796751b4b9215a9584102229, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scriptEnemy: {fileID: 3197795526651501835}
 --- !u!1001 &2148484672286908173
 PrefabInstance:
   m_ObjectHideFlags: 0

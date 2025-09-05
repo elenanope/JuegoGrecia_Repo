@@ -6,17 +6,11 @@ public class EnemyDistanceCollision : MonoBehaviour
 {
     [SerializeField] EnemyAI scriptEnemy;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            scriptEnemy.canFollow = true;
+            //scriptEnemy.canFollow = true;
         }
     }
 
@@ -24,7 +18,7 @@ public class EnemyDistanceCollision : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            scriptEnemy.canFollow = false;
+            //scriptEnemy.canFollow = false;
         }
     }
 }

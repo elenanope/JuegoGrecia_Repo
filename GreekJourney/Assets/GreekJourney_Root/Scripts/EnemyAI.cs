@@ -25,6 +25,10 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] float damageTaken = 0.2f;
     [SerializeField] float enemyLife = 0.6f;
 
+    [SerializeField] float attackDistance = 1f;
+    [SerializeField] float attackCooldown = 0f;
+    public bool attacking;
+
     [SerializeField] GameObject player;
 
     [Header("Editor References")]
@@ -36,19 +40,12 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] GameObject pickUp;
     [SerializeField] bool soltarPickUp;
 
-    //Autoreferences
-    //[SerializeField] GameObject enemyBody; //Cuerpo del enemigo
-
-
-    // Start is called before the first frame update
     void Start()
     {
         enemyrb = GetComponent<Rigidbody2D>();
         canFollow = false;
         canDie = true;
     }
-
-    // Update is called once per frame
     void Update()
     {
         if (enemyLife <= 0) enemyLife = 0;
@@ -56,9 +53,9 @@ public class EnemyAI : MonoBehaviour
         if (canDie)
         {
             FlipTowardsTarget();
-            if (canFollow) FollowingPlayer();
+            if (Vector2.Distance(transform.position, player.transform.position) < 3f && Vector2.Distance(transform.position, player.transform.position) > attackDistance) FollowingPlayer();
+            else if (Vector2.Distance(transform.position, player.transform.position) < attackDistance && attackCooldown == 0) StartCoroutine(Attacking());
             else enemyAnim.SetBool("Walk", false);
-            //antes: if (canFollow && (distanceToPlayer <= startFollowing)) FollowingPlayer();
             if (enemyLife == 0)
             {
                 canDie = false;
@@ -66,23 +63,13 @@ public class EnemyAI : MonoBehaviour
                 if (soltarPickUp) pickUp.SetActive(true);
             }
         }  
-        
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        //si despues de haber collisionado, la distancia con el colisionado es mayor a x,
-        //que vuelva a su sitio y al idle, y que si entra en el true collider que ataque
-        if (collision.gameObject.CompareTag("Player")&&canDie)
-        {
-            Attacking();
-        }
+        if(attackCooldown > 0) attackCooldown -= Time.deltaTime;
+        else attackCooldown = 0;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Weapon")&&canDie)
         {
-            //quitar vida?
             enemyLife -= damageTaken;
             enemyAnim.SetTrigger("Hurt");
             if(facingRight) enemyrb.AddForce(Vector3.left * 15, ForceMode2D.Impulse);
@@ -111,19 +98,21 @@ public class EnemyAI : MonoBehaviour
         enemyAnim.SetBool("Walk",true );
         Debug.Log("Siguiendo al player");
     }
-    void Attacking()
+    IEnumerator Attacking()
     {
-            enemyAnim.SetTrigger("Attack");
-            GameManager.Instance.totalLife -= damageToPlayer;
-            Debug.Log("Jabali atacando!");
+        attackCooldown = 1;
+        enemyAnim.ResetTrigger("Attack");
+        attacking = true;
+        enemyAnim.SetTrigger("Attack");
+        player.GetComponent<PlayerController>().TakeDamage(damageToPlayer);
+        Debug.Log(name + " atacando!");
+        attacking = false;
+        yield break;
     }
     
-    void Dying()
+    void Dying() //comprobar correcto funcionamiento
     {
         enemyAnim.SetTrigger("Death");
-        //enemyCol.enabled = false;
         Debug.Log("An enemy died!");
-        
-        //if(!lastScene) Invoke("SpawnObject", 1);
     }
 }
